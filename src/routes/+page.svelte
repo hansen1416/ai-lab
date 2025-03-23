@@ -1,20 +1,50 @@
 <script lang="ts">
 	import { base } from "$app/paths";
-	import { gsap } from "gsap";
+	import * as THREE from "three";
+	import { onMount } from "svelte";
+	// import fullpage from "fullpage.js";
 
-	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	onMount(async () => {
+		const fullpage = (await import("fullpage.js")).default;
 
-	gsap.registerPlugin(ScrollTrigger);
-
-	console.log(gsap);
+		new fullpage("#fullpage", {
+			autoScrolling: true,
+			loopTop: true,
+			loopBottom: true,
+		});
+	});
 </script>
 
-<nav>
+<!-- <nav>
 	<a href="{base}/">Home5</a>
-</nav>
+</nav> -->
 
-<h1>Welcome to SvelteKit</h1>
-<p>
-	Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the
-	documentation
-</p>
+<div id="fullpage">
+	<div class="section panel">Some section</div>
+	<div class="section panel">Some section</div>
+	<div class="section panel">Some section</div>
+	<div class="section panel">Some section</div>
+</div>
+
+<style>
+	.panel {
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 2rem;
+		color: white;
+	}
+	.panel:nth-child(1) {
+		background: #1abc9c;
+	}
+	.panel:nth-child(2) {
+		background: #3498db;
+	}
+	.panel:nth-child(3) {
+		background: #9b59b6;
+	}
+	.panel:nth-child(4) {
+		background: #e67e22;
+	}
+</style>
