@@ -1,5 +1,12 @@
 <script lang="ts">
 	import { base } from "$app/paths";
+	import { gsap } from "gsap";
+
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	console.log(gsap);
 </script>
 
 <nav>
