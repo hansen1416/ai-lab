@@ -3,7 +3,7 @@
 </script>
 
 <nav>
-	<a href="{base}/">Home</a>
+	<a href="{base}/">Home1</a>
 </nav>
 
 <h1>Welcome to SvelteKit</h1>
