@@ -5,6 +5,7 @@
 	// import fullpage from "fullpage.js";
 
 	onMount(async () => {
+		/** @ts-ignore */
 		const fullpage = (await import("fullpage.js")).default;
 
 		new fullpage("#fullpage", {
@@ -20,14 +21,19 @@
 </nav> -->
 
 <div id="fullpage">
-	<div class="section panel">Some section</div>
-	<div class="section panel">Some section</div>
-	<div class="section panel">Some section</div>
-	<div class="section panel">Some section</div>
+	<div class="section">Some section1</div>
+	<div class="section">Some section2</div>
+	<div class="section">Some section</div>
+	<div class="section">Some section</div>
 </div>
 
-<style>
-	.panel {
+<style lang="scss">
+	// $primary: #333;
+	// h1 {
+	//   color: $primary;
+	// }
+
+	.section {
 		height: 100vh;
 		display: flex;
 		align-items: center;
@@ -35,16 +41,16 @@
 		font-size: 2rem;
 		color: white;
 	}
-	.panel:nth-child(1) {
+	.section:nth-child(1) {
 		background: #1abc9c;
 	}
-	.panel:nth-child(2) {
+	.section:nth-child(2) {
 		background: #3498db;
 	}
-	.panel:nth-child(3) {
+	.section:nth-child(3) {
 		background: #9b59b6;
 	}
-	.panel:nth-child(4) {
+	.section:nth-child(4) {
 		background: #e67e22;
 	}
 </style>
