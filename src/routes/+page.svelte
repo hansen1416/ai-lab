@@ -1,24 +1,62 @@
 <script lang="ts">
 	import { base } from "$app/paths";
+	import { browser } from "$app/environment";
 	import * as THREE from "three";
-	import { onMount } from "svelte";
+	import { onMount, onDestroy } from "svelte";
+	import ThreeScene from "../lib/ThreeScene";
 	// import fullpage from "fullpage.js";
+
+	let threeScene: ThreeScene;
+
+	let canvas: HTMLCanvasElement;
+
+	let animation_pointer = 0;
+
+	const clock = new THREE.Clock();
+
+	function animate() {
+		// update physics world and threejs renderer
+		threeScene.onFrameUpdate();
+
+		animation_pointer = requestAnimationFrame(animate);
+	}
 
 	onMount(async () => {
 		/** @ts-ignore */
 		const fullpage = (await import("fullpage.js")).default;
 
 		new fullpage("#fullpage", {
+			licenseKey: "YOUR_KEY_HERE",
 			autoScrolling: true,
-			loopTop: true,
-			loopBottom: true,
+			loopTop: false,
+			loopBottom: false,
 		});
+
+		threeScene = new ThreeScene(
+			canvas,
+			document.documentElement.clientWidth,
+			document.documentElement.clientHeight,
+		);
+
+		animate();
+	});
+
+	onDestroy(() => {
+		if (browser) {
+			cancelAnimationFrame(animation_pointer);
+
+			threeScene.dispose();
+		}
 	});
 </script>
 
 <!-- <nav>
 	<a href="{base}/">Home5</a>
 </nav> -->
+
+<div>
+	<canvas bind:this={canvas}></canvas>
+</div>
 
 <div id="fullpage">
 	<div class="section">Some section1</div>
@@ -28,10 +66,12 @@
 </div>
 
 <style lang="scss">
-	// $primary: #333;
-	// h1 {
-	//   color: $primary;
-	// }
+	canvas {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -9;
+	}
 
 	.section {
 		height: 100vh;
@@ -40,17 +80,5 @@
 		justify-content: center;
 		font-size: 2rem;
 		color: white;
-	}
-	.section:nth-child(1) {
-		background: #1abc9c;
-	}
-	.section:nth-child(2) {
-		background: #3498db;
-	}
-	.section:nth-child(3) {
-		background: #9b59b6;
-	}
-	.section:nth-child(4) {
-		background: #e67e22;
 	}
 </style>
