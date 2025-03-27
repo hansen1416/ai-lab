@@ -38,6 +38,17 @@
 			document.documentElement.clientHeight,
 		);
 
+		threeScene.loadFbx("/character.fbx", "eva");
+
+		// we need store to monitor the object status
+		setTimeout(() => {
+			const object = threeScene.scene.getObjectByName("eva");
+
+			object?.position.set(0, -100, 0);
+
+			console.log(object);
+		}, 1000);
+
 		animate();
 	});
 

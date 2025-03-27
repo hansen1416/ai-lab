@@ -1,9 +1,10 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 import { MathUtils } from "three/src/math/MathUtils.js";
 
-const CAMERA_DISTANCE = 2;
-const CameraOffset = new THREE.Vector3(0, 0.6, CAMERA_DISTANCE);
+const CAMERA_DISTANCE = 500;
+const CameraOffset = new THREE.Vector3(0, 200, CAMERA_DISTANCE);
 
 let instance: ThreeScene | undefined;
 
@@ -93,9 +94,9 @@ export default class ThreeScene {
 		this.camera.lookAt(target.position);
 	}
 
-	loadFbx(url: string): void {
+	loadFbx(url: string, name: string = "") {
 		// Lazy-load FBXLoader to avoid errors if it's not imported
-		const { FBXLoader } = require("three/examples/jsm/loaders/FBXLoader");
+		// const { FBXLoader } = require("three/examples/jsm/loaders/FBXLoader");
 		const fbxLoader = new FBXLoader();
 
 		fbxLoader.load(
@@ -106,11 +107,13 @@ export default class ThreeScene {
 					this.mixer.clipAction(object.animations[0]).play();
 				}
 				this.scene.add(object);
+
+				object.name = name
 			},
 			(xhr: ProgressEvent<EventTarget>) => {
 				console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
 			},
-			(error: ErrorEvent) => {
+			(error) => {
 				console.error(error);
 			}
 		);
