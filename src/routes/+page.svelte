@@ -45,6 +45,8 @@
 			new THREE.Euler(0, -0.5, 0),
 		);
 
+		// we need store, effect maybe
+
 		// we need store to monitor the object status
 		// const object = threeScene.scene.getObjectByName("eva");
 
@@ -60,11 +62,9 @@
 	});
 </script>
 
-<!-- <nav>
-	<a href="{base}/">Home5</a>
-</nav> -->
+<!-- <a href="{base}/">Home5</a> -->
 
-<div>
+<div class="canvas-box">
 	<canvas bind:this={canvas}></canvas>
 </div>
 
@@ -76,19 +76,28 @@
 </div>
 
 <style lang="scss">
-	canvas {
+	.canvas-box {
 		position: absolute;
-		top: 0;
-		left: 0;
+		width: 100vw;
+		height: 100vh;
 		z-index: -9;
+		canvas {
+			width: 100%;
+			height: 100%;
+		}
 	}
 
-	.section {
-		height: 100vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 2rem;
-		color: white;
+	#fullpage {
+		background-color: transparent;
+
+		.section {
+			height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 2rem;
+			// color: white;
+			background-color: transparent;
+		}
 	}
 </style>
