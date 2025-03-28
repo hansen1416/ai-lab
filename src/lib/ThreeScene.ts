@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 import { MathUtils } from "three/src/math/MathUtils.js";
 
 const CAMERA_DISTANCE = 200;
@@ -95,40 +94,6 @@ export default class ThreeScene {
 		this.camera.position.setFromSpherical(spherical);
 		this.camera.position.add(target.position);
 		this.camera.lookAt(target.position);
-	}
-
-	loadFbx(url: string, name: string = "", position: THREE.Vector3 | undefined = undefined,
-		rotation: THREE.Euler | undefined = undefined) {
-		// Lazy-load FBXLoader to avoid errors if it's not imported
-		// const { FBXLoader } = require("three/examples/jsm/loaders/FBXLoader");
-		const fbxLoader = new FBXLoader();
-
-		fbxLoader.load(
-			url,
-			(object: THREE.Object3D) => {
-				this.mixer = new THREE.AnimationMixer(object);
-				if (object.animations.length > 0) {
-					this.mixer.clipAction(object.animations[0]).play();
-				}
-				this.scene.add(object);
-
-				object.name = name
-
-				if (position) {
-					object.position.copy(position)
-				}
-
-				if (rotation) {
-					object.rotation.copy(rotation)
-				}
-			},
-			(xhr: ProgressEvent<EventTarget>) => {
-				console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
-			},
-			(error) => {
-				console.error(error);
-			}
-		);
 	}
 
 	unload(target: THREE.Object3D): void {

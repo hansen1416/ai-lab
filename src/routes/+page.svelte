@@ -4,6 +4,7 @@
 	import * as THREE from "three";
 	import { onMount, onDestroy } from "svelte";
 	import ThreeScene from "../lib/ThreeScene";
+	import { loadFbx, loadJSON } from "../lib/ropes";
 	// import fullpage from "fullpage.js";
 
 	let threeScene: ThreeScene;
@@ -12,9 +13,14 @@
 
 	let animation_pointer = 0;
 
+	let mixer: THREE.AnimationMixer | undefined = undefined;
+
 	const clock = new THREE.Clock();
 
 	function animate() {
+		if (mixer) {
+			mixer.update(clock.getDelta());
+		}
 		// update physics world and threejs renderer
 		threeScene.onFrameUpdate();
 
@@ -38,12 +44,39 @@
 			document.documentElement.clientHeight,
 		);
 
-		threeScene.loadFbx(
-			"/character3967ecff-8E949CFF.fbx",
-			"eva",
-			new THREE.Vector3(50, -120, 0),
-			new THREE.Euler(0, -0.5, 0),
-		);
+		Promise.all([
+			loadFbx(
+				// "/character3967ecff-8E949CFF.fbx",
+				"Standing Greeting.fbx",
+				"eva",
+				new THREE.Vector3(50, -120, 0),
+				new THREE.Euler(0, -0.5, 0),
+			),
+			loadJSON("/thankful.json"),
+			loadJSON("/greeting.json"),
+		]).then(([eva, thankful, greeting]) => {
+			threeScene.scene.add(eva);
+
+			const thankful_clip = THREE.AnimationClip.parse(thankful);
+			const greeting_clip = THREE.AnimationClip.parse(greeting);
+
+			mixer = new THREE.AnimationMixer(eva);
+			const action = mixer.clipAction(greeting_clip);
+			action.play();
+		});
+
+		// loadFbx(
+		// 	"/character3967ecff-8E949CFF.fbx",
+		// 	// "Thankful.fbx",
+		// 	"eva",
+		// 	new THREE.Vector3(50, -120, 0),
+		// 	new THREE.Euler(0, -0.5, 0),
+		// ).then((eva: THREE.Group) => {
+		// 	threeScene.scene.add(eva);
+
+		// 	const mixer = new THREE.AnimationMixer(eva);
+		// 	const action = mixer.clipAction(clip);
+		// });
 
 		// we need store, effect maybe
 
@@ -90,13 +123,15 @@
 	#fullpage {
 		background-color: transparent;
 
+		$font-white: #fff;
+
 		.section {
 			height: 100vh;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			font-size: 2rem;
-			// color: white;
+			color: $font-white;
 			background-color: transparent;
 		}
 	}
