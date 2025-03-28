@@ -4,7 +4,7 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 import { MathUtils } from "three/src/math/MathUtils.js";
 
 const CAMERA_DISTANCE = 200;
-const CameraOffset = new THREE.Vector3(0, 0, CAMERA_DISTANCE);
+const CameraOffset = new THREE.Vector3(0, 10, CAMERA_DISTANCE);
 
 let instance: ThreeScene | undefined;
 
@@ -21,7 +21,7 @@ export default class ThreeScene {
 
 		this.scene = new THREE.Scene();
 
-		this.camera = new THREE.PerspectiveCamera(45, width / height, 0.01, 4000);
+		this.camera = new THREE.PerspectiveCamera(45, width / height, 0.01, 1000);
 		this.camera.position.copy(CameraOffset);
 		this.camera.updateProjectionMatrix();
 
