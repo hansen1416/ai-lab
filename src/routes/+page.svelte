@@ -46,13 +46,13 @@
 
 		Promise.all([
 			loadFbx(
-				"/character3967ecff-8E949CFF.fbx",
+				`${base}/character3967ecff-8E949CFF.fbx`,
 				"eva",
 				new THREE.Vector3(50, -120, 0),
 				new THREE.Euler(0, -0.5, 0),
 			),
-			loadJSON("/thankful.json"),
-			loadJSON("/greeting.json"),
+			loadJSON(`${base}/thankful.json`),
+			loadJSON(`${base}/greeting.json`),
 		]).then(([eva, thankful, greeting]) => {
 			threeScene.scene.add(eva);
 
