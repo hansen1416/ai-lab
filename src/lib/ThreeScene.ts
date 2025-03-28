@@ -3,8 +3,8 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 import { MathUtils } from "three/src/math/MathUtils.js";
 
-const CAMERA_DISTANCE = 500;
-const CameraOffset = new THREE.Vector3(0, 200, CAMERA_DISTANCE);
+const CAMERA_DISTANCE = 200;
+const CameraOffset = new THREE.Vector3(0, 0, CAMERA_DISTANCE);
 
 let instance: ThreeScene | undefined;
 
@@ -21,7 +21,7 @@ export default class ThreeScene {
 
 		this.scene = new THREE.Scene();
 
-		this.camera = new THREE.PerspectiveCamera(75, width / height, 0.01, 4000);
+		this.camera = new THREE.PerspectiveCamera(45, width / height, 0.01, 4000);
 		this.camera.position.copy(CameraOffset);
 		this.camera.updateProjectionMatrix();
 
@@ -94,7 +94,8 @@ export default class ThreeScene {
 		this.camera.lookAt(target.position);
 	}
 
-	loadFbx(url: string, name: string = "") {
+	loadFbx(url: string, name: string = "", position: THREE.Vector3 | undefined = undefined,
+		rotation: THREE.Euler | undefined = undefined) {
 		// Lazy-load FBXLoader to avoid errors if it's not imported
 		// const { FBXLoader } = require("three/examples/jsm/loaders/FBXLoader");
 		const fbxLoader = new FBXLoader();
@@ -109,6 +110,14 @@ export default class ThreeScene {
 				this.scene.add(object);
 
 				object.name = name
+
+				if (position) {
+					object.position.copy(position)
+				}
+
+				if (rotation) {
+					object.rotation.copy(rotation)
+				}
 			},
 			(xhr: ProgressEvent<EventTarget>) => {
 				console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
