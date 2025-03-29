@@ -73,11 +73,12 @@
 					const clip = animation_mapping[
 						destination.index
 					] as THREE.AnimationClip;
+
 					const action = mixer.clipAction(clip);
 
 					action.reset();
 
-					action.setLoop(THREE.LoopRepeat, 1);
+					action.setLoop(THREE.LoopOnce, 1);
 
 					// keep model at the position where it stops
 					action.clampWhenFinished = true;
@@ -118,6 +119,10 @@
 			animation_mapping.push(greeting_clip);
 
 			mixer = new THREE.AnimationMixer(eva);
+
+			mixer.addEventListener("finished", () => {
+				console.log("animation finished");
+			});
 		});
 
 		animate();
@@ -129,6 +134,8 @@
 
 			if (mixer) {
 				mixer.stopAllAction();
+
+				mixer.removeEventListener("finished", () => {});
 			}
 
 			threeScene.dispose();
@@ -145,8 +152,8 @@
 <div id="fullpage">
 	<div class="section">Some section1</div>
 	<div class="section">Some section2</div>
-	<div class="section">Some section</div>
-	<div class="section">Some section</div>
+	<div class="section">Some section3</div>
+	<div class="section">Some section4</div>
 </div>
 
 <style lang="scss">
@@ -169,11 +176,18 @@
 		.section {
 			height: 100vh;
 			display: flex;
-			align-items: center;
-			justify-content: center;
-			font-size: 2rem;
+			position: relative;
 			color: $font-white;
 			background-color: transparent;
+		}
+
+		:global(.fp-watermark) {
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			padding: 4px;
+			font-size: 14px;
+			background-color: rgba(200, 200, 200, 0.3);
 		}
 	}
 </style>
