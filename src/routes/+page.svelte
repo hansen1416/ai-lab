@@ -25,7 +25,15 @@
 
 	let action: THREE.AnimationAction | undefined = undefined;
 
+	let new_action: THREE.AnimationAction | undefined = undefined;
+
 	let animation_mapping: Array<THREE.AnimationClip | undefined> = [];
+
+	let current_section_index = $state(0);
+
+	let play_animation = $state(false);
+
+	let time_elapsed = 0;
 
 	const clock = new THREE.Clock();
 
@@ -33,10 +41,56 @@
 		if (mixer) {
 			mixer.update(clock.getDelta());
 		}
+
+		if (performance.now() - time_elapsed >= 10000) {
+			play_animation = true;
+
+			time_elapsed = performance.now();
+		}
+
 		// update physics world and threejs renderer
 		threeScene.onFrameUpdate();
 
 		animation_pointer = requestAnimationFrame(animate);
+	}
+
+	function onAnimationFinished() {
+		if (!mixer) {
+			return;
+		}
+
+		const last_clip_index = animation_mapping.length - 1;
+
+		if (!animation_mapping[last_clip_index]) {
+			return;
+		}
+
+		// mixer.stopAllAction();
+		// if (action) {
+		// 	action.stopFading();
+		// }
+
+		if (new_action) {
+			new_action.fadeOut(0.2);
+		}
+
+		action = mixer.clipAction(
+			animation_mapping[last_clip_index] as THREE.AnimationClip,
+		);
+
+		action.reset();
+
+		// Default is THREE.LoopRepeat (with an infinite number of repetitions)
+		action.setLoop(THREE.LoopRepeat, Infinity);
+
+		// keep model at the position where it stops
+		action.clampWhenFinished = true;
+
+		action.enabled = true;
+
+		action.fadeIn(0.3);
+
+		action.play();
 	}
 
 	onMount(async () => {
@@ -48,7 +102,7 @@
 			autoScrolling: true,
 			loopTop: false,
 			loopBottom: false,
-			beforeLeave: function () {
+			beforeLeave: () => {
 				// origin: Section2,
 				// destination: Section2,
 				// direction: string,
@@ -58,39 +112,20 @@
 				// You can use this callback to prevent and cancel the scroll
 				// before it takes place by returning false.
 
-				if (action) {
-					action.fadeOut(0.3);
-				}
+				time_elapsed = performance.now();
 
 				return true;
 			},
-			afterLoad: function (_: Section2, destination: Section2) {
+			afterLoad: (_: Section2, destination: Section2) => {
 				// origin: Section2,
 				// destination: Section2,
 				// direction: string,
 				// trigger: string,
 				// Callback fired once the sections have been loaded, after the scrolling has ended.
 
-				if (mixer && animation_mapping[destination.index]) {
-					const clip = animation_mapping[
-						destination.index
-					] as THREE.AnimationClip;
+				current_section_index = destination.index;
 
-					action = mixer.clipAction(clip);
-
-					action.reset();
-
-					action.setLoop(THREE.LoopOnce, 1);
-
-					// keep model at the position where it stops
-					action.clampWhenFinished = true;
-
-					action.enabled = true;
-
-					action.fadeIn(0.5);
-
-					action.play();
-				}
+				play_animation = true;
 			},
 		});
 
@@ -115,29 +150,84 @@
 		]).then(([eva, idle, happy, thankful, clapping, greeting]) => {
 			threeScene.scene.add(eva);
 
-			// const a1 = eva.animations[0].toJSON();
-
-			// console.log(a1);
-
 			const idle_clip = THREE.AnimationClip.parse(idle);
 			const happy_clip = THREE.AnimationClip.parse(happy);
 			const thankful_clip = THREE.AnimationClip.parse(thankful);
 			const clapping_clip = THREE.AnimationClip.parse(clapping);
 			const greeting_clip = THREE.AnimationClip.parse(greeting);
 
-			animation_mapping.push(idle_clip);
+			animation_mapping.push(happy_clip);
 			animation_mapping.push(thankful_clip);
 			animation_mapping.push(clapping_clip);
 			animation_mapping.push(greeting_clip);
+			animation_mapping.push(idle_clip);
 
 			mixer = new THREE.AnimationMixer(eva);
 
-			mixer.addEventListener("finished", () => {
-				console.log("animation finished");
-			});
+			mixer.addEventListener("finished", onAnimationFinished);
+
+			action = mixer.clipAction(idle_clip);
+
+			action.reset();
+
+			// Default is THREE.LoopRepeat (with an infinite number of repetitions)
+			action.setLoop(THREE.LoopRepeat, Infinity);
+
+			// keep model at the position where it stops
+			action.clampWhenFinished = true;
+
+			action.enabled = true;
+
+			action.fadeIn(0.3);
+
+			action.play();
 		});
 
 		animate();
+	});
+
+	$effect(() => {
+		if (play_animation) {
+			// play animation
+			// mixer.stopAllAction();
+
+			const clip = animation_mapping[current_section_index];
+
+			if (mixer && clip instanceof THREE.AnimationClip) {
+				if (action && action.isRunning()) {
+					action.fadeOut(0.2);
+				}
+
+				if (new_action && new_action.isRunning()) {
+					new_action.fadeOut(0.2);
+				}
+
+				new_action = mixer.clipAction(clip);
+
+				new_action.reset();
+
+				// Default is THREE.LoopRepeat (with an infinite number of repetitions)
+				new_action.setLoop(THREE.LoopOnce, 1);
+
+				// keep model at the position where it stops
+				new_action.clampWhenFinished = true;
+
+				new_action.enabled = true;
+
+				new_action.fadeIn(0.3);
+
+				new_action.play();
+			}
+
+			play_animation = false;
+		}
+
+		return () => {
+			// if a teardown function is provided, it will run
+			// a) immediately before the effect re-runs
+			// b) when the component is destroyed
+			console.log("effect teardown function after fire animation play");
+		};
 	});
 
 	onDestroy(() => {
@@ -147,7 +237,7 @@
 			if (mixer) {
 				mixer.stopAllAction();
 
-				mixer.removeEventListener("finished", () => {});
+				mixer.removeEventListener("finished", onAnimationFinished);
 			}
 
 			threeScene.dispose();
