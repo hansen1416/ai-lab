@@ -23,6 +23,8 @@
 
 	let mixer: THREE.AnimationMixer | undefined = undefined;
 
+	let action: THREE.AnimationAction | undefined = undefined;
+
 	let animation_mapping: Array<THREE.AnimationClip | undefined> = [];
 
 	const clock = new THREE.Clock();
@@ -56,8 +58,8 @@
 				// You can use this callback to prevent and cancel the scroll
 				// before it takes place by returning false.
 
-				if (mixer) {
-					mixer.stopAllAction();
+				if (action) {
+					action.fadeOut(0.3);
 				}
 
 				return true;
@@ -74,7 +76,7 @@
 						destination.index
 					] as THREE.AnimationClip;
 
-					const action = mixer.clipAction(clip);
+					action = mixer.clipAction(clip);
 
 					action.reset();
 
@@ -150,10 +152,10 @@
 </div>
 
 <div id="fullpage">
-	<div class="section">Some section1</div>
-	<div class="section">Some section2</div>
-	<div class="section">Some section3</div>
-	<div class="section">Some section4</div>
+	<div class="section">Introduction</div>
+	<div class="section">Projects</div>
+	<div class="section">Staff</div>
+	<div class="section">Joint us/contact</div>
 </div>
 
 <style lang="scss">
