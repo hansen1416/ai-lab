@@ -107,17 +107,27 @@
 				new THREE.Vector3(50, -120, 0),
 				new THREE.Euler(0, -0.5, 0),
 			),
+			loadJSON(`${base}/idle.json`),
+			loadJSON(`${base}/happy.json`),
 			loadJSON(`${base}/thankful.json`),
+			loadJSON(`${base}/clapping.json`),
 			loadJSON(`${base}/greeting.json`),
-		]).then(([eva, thankful, greeting]) => {
+		]).then(([eva, idle, happy, thankful, clapping, greeting]) => {
 			threeScene.scene.add(eva);
 
+			// const a1 = eva.animations[0].toJSON();
+
+			// console.log(a1);
+
+			const idle_clip = THREE.AnimationClip.parse(idle);
+			const happy_clip = THREE.AnimationClip.parse(happy);
 			const thankful_clip = THREE.AnimationClip.parse(thankful);
+			const clapping_clip = THREE.AnimationClip.parse(clapping);
 			const greeting_clip = THREE.AnimationClip.parse(greeting);
 
+			animation_mapping.push(idle_clip);
 			animation_mapping.push(thankful_clip);
-			animation_mapping.push(undefined);
-			animation_mapping.push(undefined);
+			animation_mapping.push(clapping_clip);
 			animation_mapping.push(greeting_clip);
 
 			mixer = new THREE.AnimationMixer(eva);
