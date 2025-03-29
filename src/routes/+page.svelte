@@ -5,7 +5,6 @@
 	import { onMount, onDestroy } from "svelte";
 	import ThreeScene from "../lib/ThreeScene";
 	import { loadFbx, loadJSON } from "../lib/ropes";
-	// import fullpage from "fullpage.js";
 
 	type Section2 = {
 		anchor: HTMLElement | undefined;
