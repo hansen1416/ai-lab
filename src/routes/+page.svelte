@@ -7,6 +7,15 @@
 	import { loadFbx, loadJSON } from "../lib/ropes";
 	// import fullpage from "fullpage.js";
 
+	type Section2 = {
+		anchor: HTMLElement | undefined;
+		index: number;
+		isActive: boolean;
+		isFirst: boolean;
+		isLast: boolean;
+		item: HTMLElement;
+	};
+
 	let threeScene: ThreeScene;
 
 	let canvas: HTMLCanvasElement;
@@ -36,6 +45,29 @@
 			autoScrolling: true,
 			loopTop: false,
 			loopBottom: false,
+			beforeLeave: function (
+				origin: Section2,
+				destination: Section2,
+				direction: string,
+				trigger: string,
+			) {
+				// This callback is fired right before leaving the section,
+				// just before the transition takes place.
+				// You can use this callback to prevent and cancel the scroll
+				// before it takes place by returning false.
+				console.log(origin, destination, direction, trigger);
+
+				return true;
+			},
+			afterLoad: function (
+				origin: Section2,
+				destination: Section2,
+				direction: string,
+				trigger: string,
+			) {
+				// Callback fired once the sections have been loaded, after the scrolling has ended.
+				console.log(origin, destination, direction, trigger);
+			},
 		});
 
 		threeScene = new ThreeScene(
