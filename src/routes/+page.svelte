@@ -23,6 +23,8 @@
 
 	let mixer: THREE.AnimationMixer | undefined = undefined;
 
+	let animation_mapping: Array<THREE.AnimationClip | undefined> = [];
+
 	const clock = new THREE.Clock();
 
 	function animate() {
@@ -44,28 +46,48 @@
 			autoScrolling: true,
 			loopTop: false,
 			loopBottom: false,
-			beforeLeave: function (
-				origin: Section2,
-				destination: Section2,
-				direction: string,
-				trigger: string,
-			) {
+			beforeLeave: function () {
+				// origin: Section2,
+				// destination: Section2,
+				// direction: string,
+				// trigger: string,
 				// This callback is fired right before leaving the section,
 				// just before the transition takes place.
 				// You can use this callback to prevent and cancel the scroll
 				// before it takes place by returning false.
-				console.log(origin, destination, direction, trigger);
+
+				if (mixer) {
+					mixer.stopAllAction();
+				}
 
 				return true;
 			},
-			afterLoad: function (
-				origin: Section2,
-				destination: Section2,
-				direction: string,
-				trigger: string,
-			) {
+			afterLoad: function (_: Section2, destination: Section2) {
+				// origin: Section2,
+				// destination: Section2,
+				// direction: string,
+				// trigger: string,
 				// Callback fired once the sections have been loaded, after the scrolling has ended.
-				console.log(origin, destination, direction, trigger);
+
+				if (mixer && animation_mapping[destination.index]) {
+					const clip = animation_mapping[
+						destination.index
+					] as THREE.AnimationClip;
+					const action = mixer.clipAction(clip);
+
+					action.reset();
+
+					action.setLoop(THREE.LoopRepeat, 1);
+
+					// keep model at the position where it stops
+					action.clampWhenFinished = true;
+
+					action.enabled = true;
+
+					action.fadeIn(0.5);
+
+					action.play();
+				}
 			},
 		});
 
@@ -90,28 +112,13 @@
 			const thankful_clip = THREE.AnimationClip.parse(thankful);
 			const greeting_clip = THREE.AnimationClip.parse(greeting);
 
+			animation_mapping.push(thankful_clip);
+			animation_mapping.push(undefined);
+			animation_mapping.push(undefined);
+			animation_mapping.push(greeting_clip);
+
 			mixer = new THREE.AnimationMixer(eva);
-			const action = mixer.clipAction(greeting_clip);
-			action.play();
 		});
-
-		// loadFbx(
-		// 	"/character3967ecff-8E949CFF.fbx",
-		// 	// "Thankful.fbx",
-		// 	"eva",
-		// 	new THREE.Vector3(50, -120, 0),
-		// 	new THREE.Euler(0, -0.5, 0),
-		// ).then((eva: THREE.Group) => {
-		// 	threeScene.scene.add(eva);
-
-		// 	const mixer = new THREE.AnimationMixer(eva);
-		// 	const action = mixer.clipAction(clip);
-		// });
-
-		// we need store, effect maybe
-
-		// we need store to monitor the object status
-		// const object = threeScene.scene.getObjectByName("eva");
 
 		animate();
 	});
@@ -119,6 +126,10 @@
 	onDestroy(() => {
 		if (browser) {
 			cancelAnimationFrame(animation_pointer);
+
+			if (mixer) {
+				mixer.stopAllAction();
+			}
 
 			threeScene.dispose();
 		}
