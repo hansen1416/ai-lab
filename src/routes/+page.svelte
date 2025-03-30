@@ -215,6 +215,8 @@
 			position: relative;
 			color: $font-white;
 			background-color: transparent;
+			box-sizing: border-box;
+			padding: 40px;
 		}
 
 		:global(.fp-watermark) {
