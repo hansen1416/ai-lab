@@ -5,6 +5,10 @@
 	import { onMount, onDestroy } from "svelte";
 	import ThreeScene from "../lib/ThreeScene";
 	import { loadFbx, loadJSON, play_action } from "../lib/ropes";
+	import Instruction from "../components/introduction.svelte";
+	import Projects from "../components/projects.svelte";
+	import Staff from "../components/staff.svelte";
+	import Joinus from "../components/joinus.svelte";
 
 	type Section2 = {
 		anchor: HTMLElement | undefined;
@@ -137,35 +141,27 @@
 	});
 
 	$effect(() => {
-		if (play_animation) {
-			// play animation
-			// mixer.stopAllAction();
-
-			const clip = animation_mapping[current_section_index];
-
-			if (mixer && clip instanceof THREE.AnimationClip) {
-				if (idle_action && idle_action.isRunning()) {
-					idle_action.fadeOut(0.2);
-				}
-
-				if (new_action && new_action.isRunning()) {
-					new_action.fadeOut(0.2);
-				}
-
-				new_action = mixer.clipAction(clip);
-
-				play_action(new_action, THREE.LoopOnce, 1);
-			}
-
-			play_animation = false;
+		if (!play_animation) {
+			return;
 		}
 
-		return () => {
-			// if a teardown function is provided, it will run
-			// a) immediately before the effect re-runs
-			// b) when the component is destroyed
-			console.log("effect teardown function after fire animation play");
-		};
+		if (idle_action && idle_action.isRunning()) {
+			idle_action.fadeOut(0.2);
+		}
+
+		if (new_action && new_action.isRunning()) {
+			new_action.fadeOut(0.2);
+		}
+
+		const clip = animation_mapping[current_section_index];
+
+		if (mixer && clip instanceof THREE.AnimationClip) {
+			new_action = mixer.clipAction(clip);
+
+			play_action(new_action, THREE.LoopOnce, 1);
+		}
+
+		play_animation = false;
 	});
 
 	onDestroy(() => {
@@ -190,10 +186,10 @@
 </div>
 
 <div id="fullpage">
-	<div class="section">Introduction</div>
-	<div class="section">Projects</div>
-	<div class="section">Staff</div>
-	<div class="section">Joint us/contact</div>
+	<div class="section"><Instruction /></div>
+	<div class="section"><Projects /></div>
+	<div class="section"><Staff /></div>
+	<div class="section"><Joinus /></div>
 </div>
 
 <style lang="scss">
