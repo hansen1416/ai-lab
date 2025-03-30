@@ -4,7 +4,7 @@
 	import * as THREE from "three";
 	import { onMount, onDestroy } from "svelte";
 	import ThreeScene from "../lib/ThreeScene";
-	import { loadFbx, loadJSON } from "../lib/ropes";
+	import { loadFbx, loadJSON, play_action } from "../lib/ropes";
 
 	type Section2 = {
 		anchor: HTMLElement | undefined;
@@ -23,7 +23,7 @@
 
 	let mixer: THREE.AnimationMixer | undefined = undefined;
 
-	let action: THREE.AnimationAction | undefined = undefined;
+	let idle_action: THREE.AnimationAction | undefined = undefined;
 
 	let new_action: THREE.AnimationAction | undefined = undefined;
 
@@ -59,38 +59,13 @@
 			return;
 		}
 
-		const last_clip_index = animation_mapping.length - 1;
-
-		if (!animation_mapping[last_clip_index]) {
-			return;
-		}
-
-		// mixer.stopAllAction();
-		// if (action) {
-		// 	action.stopFading();
-		// }
-
 		if (new_action) {
 			new_action.fadeOut(0.2);
 		}
 
-		action = mixer.clipAction(
-			animation_mapping[last_clip_index] as THREE.AnimationClip,
-		);
-
-		action.reset();
-
-		// Default is THREE.LoopRepeat (with an infinite number of repetitions)
-		action.setLoop(THREE.LoopRepeat, Infinity);
-
-		// keep model at the position where it stops
-		action.clampWhenFinished = true;
-
-		action.enabled = true;
-
-		action.fadeIn(0.3);
-
-		action.play();
+		if (idle_action) {
+			play_action(idle_action);
+		}
 	}
 
 	onMount(async () => {
@@ -103,26 +78,14 @@
 			loopTop: false,
 			loopBottom: false,
 			beforeLeave: () => {
-				// origin: Section2,
-				// destination: Section2,
-				// direction: string,
-				// trigger: string,
-				// This callback is fired right before leaving the section,
-				// just before the transition takes place.
-				// You can use this callback to prevent and cancel the scroll
-				// before it takes place by returning false.
-
+				// fired right before leaving the section, just before the transition takes place.
+				// cancel the scroll by returning false.
 				time_elapsed = performance.now();
 
 				return true;
 			},
 			afterLoad: (_: Section2, destination: Section2) => {
-				// origin: Section2,
-				// destination: Section2,
-				// direction: string,
-				// trigger: string,
 				// Callback fired once the sections have been loaded, after the scrolling has ended.
-
 				current_section_index = destination.index;
 
 				play_animation = true;
@@ -160,27 +123,14 @@
 			animation_mapping.push(thankful_clip);
 			animation_mapping.push(clapping_clip);
 			animation_mapping.push(greeting_clip);
-			animation_mapping.push(idle_clip);
 
 			mixer = new THREE.AnimationMixer(eva);
 
 			mixer.addEventListener("finished", onAnimationFinished);
 
-			action = mixer.clipAction(idle_clip);
+			idle_action = mixer.clipAction(idle_clip);
 
-			action.reset();
-
-			// Default is THREE.LoopRepeat (with an infinite number of repetitions)
-			action.setLoop(THREE.LoopRepeat, Infinity);
-
-			// keep model at the position where it stops
-			action.clampWhenFinished = true;
-
-			action.enabled = true;
-
-			action.fadeIn(0.3);
-
-			action.play();
+			play_action(idle_action);
 		});
 
 		animate();
@@ -194,8 +144,8 @@
 			const clip = animation_mapping[current_section_index];
 
 			if (mixer && clip instanceof THREE.AnimationClip) {
-				if (action && action.isRunning()) {
-					action.fadeOut(0.2);
+				if (idle_action && idle_action.isRunning()) {
+					idle_action.fadeOut(0.2);
 				}
 
 				if (new_action && new_action.isRunning()) {
@@ -204,19 +154,7 @@
 
 				new_action = mixer.clipAction(clip);
 
-				new_action.reset();
-
-				// Default is THREE.LoopRepeat (with an infinite number of repetitions)
-				new_action.setLoop(THREE.LoopOnce, 1);
-
-				// keep model at the position where it stops
-				new_action.clampWhenFinished = true;
-
-				new_action.enabled = true;
-
-				new_action.fadeIn(0.3);
-
-				new_action.play();
+				play_action(new_action, THREE.LoopOnce, 1);
 			}
 
 			play_animation = false;

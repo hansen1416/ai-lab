@@ -42,3 +42,24 @@ export function loadJSON(url: string): Promise<any> {
         fetch(url).then((response) => resolve(response.json()));
     });
 }
+
+
+export function play_action(
+    action: THREE.AnimationAction,
+    mode: THREE.AnimationActionLoopStyles = THREE.LoopRepeat,
+    repetitions: number = Infinity,
+) {
+    action.reset();
+
+    // Default is THREE.LoopRepeat (with an infinite number of repetitions)
+    action.setLoop(mode, repetitions);
+
+    // keep model at the position where it stops
+    action.clampWhenFinished = true;
+
+    action.enabled = true;
+
+    action.fadeIn(0.3);
+
+    action.play();
+}
