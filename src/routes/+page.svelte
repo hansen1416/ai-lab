@@ -5,7 +5,7 @@
 	import { onMount, onDestroy } from "svelte";
 	import ThreeScene from "../lib/ThreeScene";
 	import { loadFbx, loadJSON, play_action } from "../lib/ropes";
-	import Instruction from "../components/introduction.svelte";
+	import Introduction from "../components/introduction.svelte";
 	import Projects from "../components/projects.svelte";
 	import Team from "../components/team.svelte";
 	import Joinus from "../components/joinus.svelte";
@@ -78,6 +78,7 @@
 
 		new fullpage("#fullpage", {
 			// licenseKey: "YOUR_KEY_HERE",
+			anchors: ["introduction", "projects", "team", "joinus"],
 			autoScrolling: true,
 			loopTop: false,
 			loopBottom: false,
@@ -186,10 +187,10 @@
 </div>
 
 <div id="fullpage">
-	<div id="instruction" class="section"><Instruction /></div>
-	<div id="projects" class="section"><Projects /></div>
-	<div id="team" class="section"><Team /></div>
-	<div id="instruction" class="section"><Joinus /></div>
+	<div class="section"><Introduction /></div>
+	<div class="section"><Projects /></div>
+	<div class="section"><Team /></div>
+	<div class="section"><Joinus /></div>
 </div>
 
 <style lang="scss">

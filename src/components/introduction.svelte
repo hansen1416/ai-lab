@@ -3,9 +3,9 @@
 <div>
 	<div class="top-bar">
 		<div class="title">Brighton AI Robotics (AIR) Force Projects</div>
-		<div class="nav button-64"><a class="text">Projects</a></div>
-		<div class="nav button-64"><a class="text">Team</a></div>
-		<div class="nav button-64"><a class="text">Join Us</a></div>
+		<div class="nav button-64"><a href="#projects">Projects</a></div>
+		<div class="nav button-64"><a href="#team">Team</a></div>
+		<div class="nav button-64"><a href="#joinus">Join Us</a></div>
 	</div>
 </div>
 
