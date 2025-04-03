@@ -10,6 +10,8 @@
 </div>
 
 <style lang="scss">
+	@use "../assets/global";
+
 	// .button-64 {
 	// 	align-items: center;
 	// 	background-image: linear-gradient(
@@ -57,7 +59,7 @@
 	// 	background: none;
 	// }
 
-	$font-white: #fff;
+	// $font-white: #fff;
 	.top-bar {
 		display: flex;
 		flex-direction: row;

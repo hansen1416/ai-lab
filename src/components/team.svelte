@@ -1,6 +1,6 @@
 <script lang="ts"></script>
 
-<div>Study or Work With Us</div>
+<div>Team</div>
 
 <style lang="scss">
 	@use "../assets/global";

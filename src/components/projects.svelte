@@ -8,4 +8,6 @@
 	Multi-modal Control for Robotic Devices Central Artificial Intelligence
 </div>
 
-<style lang="scss"></style>
+<style lang="scss">
+	@use "../assets/global";
+</style>

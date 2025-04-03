@@ -7,7 +7,7 @@
 	import { loadFbx, loadJSON, play_action } from "../lib/ropes";
 	import Instruction from "../components/introduction.svelte";
 	import Projects from "../components/projects.svelte";
-	import Staff from "../components/staff.svelte";
+	import Team from "../components/team.svelte";
 	import Joinus from "../components/joinus.svelte";
 
 	type Section2 = {
@@ -77,7 +77,7 @@
 		const fullpage = (await import("fullpage.js")).default;
 
 		new fullpage("#fullpage", {
-			licenseKey: "YOUR_KEY_HERE",
+			// licenseKey: "YOUR_KEY_HERE",
 			autoScrolling: true,
 			loopTop: false,
 			loopBottom: false,
@@ -186,13 +186,15 @@
 </div>
 
 <div id="fullpage">
-	<div class="section"><Instruction /></div>
-	<div class="section"><Projects /></div>
-	<div class="section"><Staff /></div>
-	<div class="section"><Joinus /></div>
+	<div id="instruction" class="section"><Instruction /></div>
+	<div id="projects" class="section"><Projects /></div>
+	<div id="team" class="section"><Team /></div>
+	<div id="instruction" class="section"><Joinus /></div>
 </div>
 
 <style lang="scss">
+	@use "../assets/global";
+
 	.canvas-box {
 		position: absolute;
 		width: 100vw;
@@ -207,13 +209,11 @@
 	#fullpage {
 		background-color: transparent;
 
-		$font-white: #fff;
-
 		.section {
 			height: 100vh;
 			display: flex;
 			position: relative;
-			color: $font-white;
+			color: global.$font-white;
 			background-color: transparent;
 			box-sizing: border-box;
 			padding: 40px;
