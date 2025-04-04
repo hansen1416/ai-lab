@@ -217,7 +217,7 @@
 			color: global.$font-white;
 			background-color: transparent;
 			box-sizing: border-box;
-			padding: 40px;
+			padding: global.$magin-1;
 		}
 
 		:global(.fp-watermark) {
