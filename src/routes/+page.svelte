@@ -4,7 +4,13 @@
 	import * as THREE from "three";
 	import { onMount, onDestroy } from "svelte";
 	import ThreeScene from "../lib/ThreeScene";
-	import { loadFbx, loadJSON, play_action } from "../lib/ropes";
+	import {
+		loadFbx,
+		loadJSON,
+		play_action,
+		visibleHeightAtZDepth,
+		visibleWidthAtZDepth,
+	} from "../lib/ropes";
 	import Introduction from "../components/introduction.svelte";
 	import Projects from "../components/projects.svelte";
 	import Team from "../components/team.svelte";
@@ -103,11 +109,13 @@
 			document.documentElement.clientHeight,
 		);
 
+		const visible_width = visibleWidthAtZDepth(0, threeScene.camera);
+
 		Promise.all([
 			loadFbx(
 				`${base}/character3967ecff-8E949CFF.fbx`,
 				"eva",
-				new THREE.Vector3(50, -120, 0),
+				new THREE.Vector3(0.118 * visible_width, -120, 0),
 				new THREE.Euler(0, -0.5, 0),
 			),
 			loadJSON(`${base}/idle.json`),
