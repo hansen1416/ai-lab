@@ -4,6 +4,9 @@ $corner-border-width: 2px;
 $corner-border-height: 30%;
 $corner-border-size-top: 12px;
 $corner-border-size-side: 1px;
+$text-border-size: 40px;
+$text-border-width: 1px;
+$text-border-color: #fff;
 
 $magin-1: 40px;
 
@@ -74,6 +77,60 @@ $magin-1: 40px;
         right: 0;
         border-right: $corner-border-size-side solid $button-border;
     }
+}
 
 
+@mixin text-top {
+
+    position: relative;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        width: $text-border-size;
+        height: $text-border-size;
+        border-top: $text-border-width solid $text-border-color;
+        top: 0;
+        border-bottom: 0;
+    }
+
+    &::before {
+        left: 0;
+        border-left: $text-border-width solid $text-border-color;
+        z-index: 9;
+    }
+
+    &::after {
+        right: 0;
+        border-right: $text-border-width solid $text-border-color;
+    }
+}
+
+@mixin text-bottom {
+
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        width: $text-border-size;
+        height: $text-border-size;
+        border-bottom: $text-border-width solid $text-border-color;
+        bottom: 0;
+        border-top: 0;
+    }
+
+    &::before {
+        left: 0;
+        border-left: $text-border-width solid $text-border-color;
+    }
+
+    &::after {
+        right: 0;
+        border-right: $text-border-width solid $text-border-color;
+    }
 }
