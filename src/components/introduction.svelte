@@ -46,10 +46,12 @@
 		height: 100%;
 	}
 
+	$top-bar-height: 60px;
+
 	.top-bar {
 		display: flex;
 		flex-direction: row;
-		height: 40px;
+		height: $top-bar-height;
 		align-items: center;
 		justify-content: flex-start;
 		margin-bottom: global.$magin-1;
@@ -59,8 +61,8 @@
 			font-size: 18px;
 			margin-right: 36px;
 			letter-spacing: 4px;
-			width: 160px;
-			height: 40px;
+			width: 180px;
+			height: $top-bar-height;
 
 			@include global.button-top;
 
@@ -77,8 +79,11 @@
 	}
 
 	.description {
-		display: flex;
-		flex-direction: column;
+		width: 100%;
+		height: 100%;
+		margin: global.$magin-1;
+		box-sizing: border-box;
+
 		.title {
 			font-size: 24px;
 			margin-bottom: global.$magin-1;
