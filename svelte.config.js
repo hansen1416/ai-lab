@@ -22,10 +22,10 @@ const config = {
 		}),
 		paths: {
 			base: process.env.NODE_ENV === 'production' ? '/ai-lab' : '',
+		},
+		prerender: {
+			handleMissingId: 'warn' // or 'ignore'
 		}
-	},
-	prerender: {
-		handleMissingId: 'ignore' // or 'warn'
 	}
 };
 
