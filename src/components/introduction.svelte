@@ -45,19 +45,17 @@
 	.intro {
 		display: flex;
 		flex-direction: column;
-		width: calc(50vw - 40px);
+		width: calc(50vw - global.$margin-1);
 		height: 100%;
 	}
-
-	$top-bar-height: 60px;
 
 	.top-bar {
 		display: flex;
 		flex-direction: row;
-		height: $top-bar-height;
+		height: global.$top-bar-height;
 		align-items: center;
 		justify-content: flex-start;
-		margin-bottom: global.$magin-1;
+		margin-bottom: global.$margin-1;
 
 		.nav {
 			text-transform: uppercase;
@@ -65,7 +63,7 @@
 			margin-right: 36px;
 			letter-spacing: 4px;
 			width: 180px;
-			height: $top-bar-height;
+			height: global.$top-bar-height;
 
 			@include global.button-top;
 
@@ -76,7 +74,7 @@
 			a {
 				@include global.button-bottom;
 
-				background-color: #433581;
+				background-color: global.$button-background;
 			}
 		}
 	}
@@ -91,12 +89,12 @@
 			@include global.text-bottom;
 
 			box-sizing: border-box;
-			padding: global.$magin-1;
+			padding: global.$margin-1;
 		}
 
 		.title {
-			font-size: 24px;
-			margin-bottom: global.$magin-1;
+			font-size: global.$title-font-size;
+			margin-bottom: global.$margin-1;
 		}
 
 		.content {
