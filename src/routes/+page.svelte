@@ -219,12 +219,12 @@
 		background-color: transparent;
 
 		.section {
-			height: 100vh;
+			height: calc(100vh - global.$margin-1 * 2);
 			display: flex;
 			position: relative;
 			color: global.$font-white;
 			background-color: transparent;
-			box-sizing: border-box;
+			// box-sizing: border-box;
 			padding: global.$margin-1;
 		}
 

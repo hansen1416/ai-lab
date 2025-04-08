@@ -4,7 +4,9 @@
 
 {@render children()}
 
-<style lang="scss">
+<style>
+	@import "tailwindcss";
+
 	:global {
 		html {
 			margin: 0;
@@ -21,6 +23,10 @@
 		p {
 			margin: 0;
 			margin-bottom: 1em;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
 		}
 	}
 </style>

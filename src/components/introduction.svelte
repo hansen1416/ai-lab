@@ -46,7 +46,7 @@
 		display: flex;
 		flex-direction: column;
 		width: calc(50vw - global.$margin-1);
-		height: 100%;
+		height: calc(100svh - global.$margin-1 * 2);
 	}
 
 	.top-bar {
@@ -81,15 +81,14 @@
 
 	.desc {
 		width: 100%;
-		height: 100%;
-
-		@include global.text-top;
+		min-height: 0;
+		flex: 1 1 auto;
+		display: flex;
 
 		.desc-inner {
-			@include global.text-bottom;
-
 			box-sizing: border-box;
 			padding: global.$margin-1;
+			flex: 1 1 auto;
 		}
 
 		.title {
