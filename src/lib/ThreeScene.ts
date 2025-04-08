@@ -5,8 +5,6 @@ import { MathUtils } from "three/src/math/MathUtils.js";
 const CAMERA_DISTANCE = 200;
 const CameraOffset = new THREE.Vector3(0, 10, CAMERA_DISTANCE);
 
-const BACKGROUND_COLOR = 0x210F37;
-
 
 let instance: ThreeScene | undefined;
 
@@ -28,7 +26,9 @@ export default class ThreeScene {
 		this.camera.updateProjectionMatrix();
 
 		this.scene.add(new THREE.AmbientLight(0xffffff, 1));
-		this.scene.background = new THREE.Color(BACKGROUND_COLOR);
+		// this.scene.background = new THREE.Color(0x210F37);
+		// const loader = new THREE.TextureLoader();
+		// this.scene.background = loader.load('https://threejs.org/examples/textures/uv_grid_opengl.jpg');
 
 		const directLight = new THREE.DirectionalLight(0xffffff, 1);
 		directLight.position.set(0, 100, 100);

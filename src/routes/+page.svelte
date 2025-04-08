@@ -8,7 +8,6 @@
 		loadFbx,
 		loadJSON,
 		play_action,
-		visibleHeightAtZDepth,
 		visibleWidthAtZDepth,
 	} from "../lib/ropes";
 	import Introduction from "../components/introduction.svelte";
@@ -190,6 +189,8 @@
 
 <!-- <a href="{base}/">Home5</a> -->
 
+<div class="overall-bg"></div>
+
 <div class="canvas-box">
 	<canvas bind:this={canvas}></canvas>
 </div>
@@ -203,6 +204,22 @@
 
 <style lang="scss">
 	@use "../assets/global";
+
+	.overall-bg {
+		background: radial-gradient(
+			ellipse at 70% 50%,
+			#392256 0%,
+			#210f37 40%,
+			#040126 100%
+		);
+		min-height: 100vh;
+		width: 100%;
+		margin: 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -99;
+	}
 
 	.canvas-box {
 		position: absolute;
@@ -224,7 +241,6 @@
 			position: relative;
 			color: global.$font-white;
 			background-color: transparent;
-			// box-sizing: border-box;
 			padding: global.$margin-1;
 		}
 
