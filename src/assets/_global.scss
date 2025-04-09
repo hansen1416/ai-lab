@@ -48,7 +48,7 @@ $margin-1: 40px;
     width: 100%;
     height: 100%;
     text-align: center;
-    color: $font-white;
+    color: inherit;
     text-decoration: none;
     box-sizing: border-box;
     display: flex;
@@ -56,7 +56,7 @@ $margin-1: 40px;
     align-items: center;
 
     &:visited {
-        color: $font-white;
+        color: inherit;
         text-decoration: none;
     }
 

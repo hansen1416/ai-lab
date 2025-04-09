@@ -2,9 +2,9 @@
 
 <div class="intro">
 	<div class="top-bar">
-		<div class="nav"><a href="#projects">Projects</a></div>
-		<div class="nav"><a href="#team">Team</a></div>
-		<div class="nav"><a href="#joinus">Join Us</a></div>
+		<div class="nav text-stone-50"><a href="#projects">Projects</a></div>
+		<div class="nav text-stone-50"><a href="#team">Team</a></div>
+		<div class="nav text-stone-50"><a href="#joinus">Join Us</a></div>
 	</div>
 	<div class="desc">
 		<div class="desc-inner">
