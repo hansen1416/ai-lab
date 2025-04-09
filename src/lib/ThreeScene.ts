@@ -14,7 +14,7 @@ export default class ThreeScene {
 	renderer!: THREE.WebGLRenderer;
 	controls!: OrbitControls;
 	clock!: THREE.Clock;
-	private mixer?: THREE.AnimationMixer;
+	pLights: THREE.Object3D[] = [];
 
 	constructor(canvas: HTMLCanvasElement, width: number, height: number) {
 		if (instance) return instance;
@@ -61,6 +61,9 @@ export default class ThreeScene {
 	}
 
 	onFrameUpdate(stats?: { update: () => void }): void {
+
+		this.pLights.forEach(l => l.userData.update());
+
 		this.renderer.render(this.scene, this.camera);
 		if (stats) stats.update();
 	}
@@ -94,6 +97,85 @@ export default class ThreeScene {
 		this.camera.position.setFromSpherical(spherical);
 		this.camera.position.add(target.position);
 		this.camera.lookAt(target.position);
+	}
+
+	_getOrbitObj(mesh: THREE.Mesh) {
+		// orbit object
+		const orbitObj = new THREE.Object3D();
+		const radius = 30;
+		mesh.position.x = radius;
+		orbitObj.rotation.x = THREE.MathUtils.degToRad(90);
+		orbitObj.rotation.y = Math.random() * Math.PI * 2;
+		orbitObj.add(mesh);
+		const rate = Math.random() * 0.01 + 0.005;
+		const offset = Math.floor(Math.random() * 6);
+		let roteZ = 0
+		function update() {
+			roteZ += rate;
+			orbitObj.rotation.z = roteZ + offset;
+		}
+		orbitObj.userData = { update };
+		return orbitObj;
+	}
+
+	_addGlow(mesh: THREE.Mesh, color: THREE.Color, geo: THREE.BufferGeometry) {
+		const glowMat = new THREE.MeshBasicMaterial({
+			color,
+			transparent: true,
+			opacity: 0.15
+		});
+		const glowMesh = new THREE.Mesh(geo, glowMat);
+		glowMesh.scale.multiplyScalar(1.5);
+		const glowMesh2 = new THREE.Mesh(geo, glowMat);
+		glowMesh2.scale.multiplyScalar(2.5);
+		const glowMesh3 = new THREE.Mesh(geo, glowMat);
+		glowMesh3.scale.multiplyScalar(4);
+		const glowMesh4 = new THREE.Mesh(geo, glowMat);
+		glowMesh4.scale.multiplyScalar(6);
+
+		mesh.add(glowMesh);
+		mesh.add(glowMesh2);
+		mesh.add(glowMesh3);
+		mesh.add(glowMesh4);
+	}
+
+	getFirefly() {
+
+		let hue = 0.6 + Math.random() * 0.2;
+
+		const color = new THREE.Color().setHSL(hue, 1, 0.5);
+
+
+		// more performant than PointLight
+		const light = new THREE.SpotLight(color, 2);
+		// light ball
+		const geo = new THREE.IcosahedronGeometry(0.1, 2);
+		const mat = new THREE.MeshBasicMaterial({ color });
+		const mesh = new THREE.Mesh(geo, mat);
+
+		mesh.add(light);
+
+		const orbitObj = this._getOrbitObj(mesh);
+		this._addGlow(mesh, color, geo);
+
+		return orbitObj;
+	}
+
+	addfireflys(position: THREE.Vector3 = new THREE.Vector3(0, 0, 0)): void {
+
+		const fireflyGroup = new THREE.Group();
+		this.scene.add(fireflyGroup);
+
+		let pLight;
+		for (let i = 0, numLights = 10; i < numLights; i += 1) {
+			pLight = this.getFirefly();
+
+			fireflyGroup.add(pLight);
+
+			this.pLights.push(pLight);
+		}
+
+		fireflyGroup.position.copy(position);
 	}
 
 	unload(target: THREE.Object3D): void {

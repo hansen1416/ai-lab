@@ -113,11 +113,13 @@
 
 		const visible_width = visibleWidthAtZDepth(0, threeScene.camera);
 
+		const initial_x = visible_width * 0.118;
+
 		Promise.all([
 			loadFbx(
 				`${base}/character3967ecff-8E949CFF.fbx`,
 				"eva",
-				new THREE.Vector3(0.118 * visible_width, -120, 0),
+				new THREE.Vector3(initial_x, -120, 0),
 				new THREE.Euler(0, -0.5, 0),
 			),
 			loadJSON(`${base}/idle.json`),
@@ -126,32 +128,42 @@
 			loadJSON(`${base}/clapping.json`),
 			loadJSON(`${base}/greeting.json`),
 			new Promise((resolve) =>
-				setTimeout(resolve, 1000),
+				setTimeout(
+					resolve,
+					process.env.NODE_ENV === "production" ? 1500 : 100,
+				),
 			) /** minimum loading time */,
-		]).then(([eva, idle, happy, thankful, clapping, greeting]) => {
-			threeScene.scene.add(eva);
+		])
+			.then(([eva, idle, happy, thankful, clapping, greeting]) => {
+				threeScene.scene.add(eva);
 
-			const idle_clip = THREE.AnimationClip.parse(idle);
-			const happy_clip = THREE.AnimationClip.parse(happy);
-			const thankful_clip = THREE.AnimationClip.parse(thankful);
-			const clapping_clip = THREE.AnimationClip.parse(clapping);
-			const greeting_clip = THREE.AnimationClip.parse(greeting);
+				const idle_clip = THREE.AnimationClip.parse(idle);
+				const happy_clip = THREE.AnimationClip.parse(happy);
+				const thankful_clip = THREE.AnimationClip.parse(thankful);
+				const clapping_clip = THREE.AnimationClip.parse(clapping);
+				const greeting_clip = THREE.AnimationClip.parse(greeting);
 
-			animation_mapping.push(happy_clip);
-			animation_mapping.push(thankful_clip);
-			animation_mapping.push(clapping_clip);
-			animation_mapping.push(greeting_clip);
+				animation_mapping.push(happy_clip);
+				animation_mapping.push(thankful_clip);
+				animation_mapping.push(clapping_clip);
+				animation_mapping.push(greeting_clip);
 
-			mixer = new THREE.AnimationMixer(eva);
+				mixer = new THREE.AnimationMixer(eva);
 
-			mixer.addEventListener("finished", onAnimationFinished);
+				mixer.addEventListener("finished", onAnimationFinished);
 
-			idle_action = mixer.clipAction(idle_clip);
+				idle_action = mixer.clipAction(idle_clip);
 
-			play_action(idle_action);
+				play_action(idle_action);
 
-			loading = false;
-		});
+				threeScene.addfireflys(new THREE.Vector3(initial_x, 0, 0));
+
+				loading = false;
+			})
+			.finally(() => {
+				// remove loading screen
+				// loading = false;
+			});
 
 		animate();
 	});
