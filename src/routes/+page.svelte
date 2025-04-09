@@ -16,7 +16,7 @@
 	import Team from "../components/team.svelte";
 	import Joinus from "../components/joinus.svelte";
 
-	let loading = true;
+	let loading = $state(true);
 
 	type Section2 = {
 		anchor: HTMLElement | undefined;
@@ -125,6 +125,9 @@
 			loadJSON(`${base}/thankful.json`),
 			loadJSON(`${base}/clapping.json`),
 			loadJSON(`${base}/greeting.json`),
+			new Promise((resolve) =>
+				setTimeout(resolve, 1000),
+			) /** minimum loading time */,
 		]).then(([eva, idle, happy, thankful, clapping, greeting]) => {
 			threeScene.scene.add(eva);
 
@@ -146,6 +149,8 @@
 			idle_action = mixer.clipAction(idle_clip);
 
 			play_action(idle_action);
+
+			loading = false;
 		});
 
 		animate();
@@ -192,21 +197,21 @@
 
 <!-- <a href="{base}/">Home5</a> -->
 
+<div class="overall-bg"></div>
+
+<div class="canvas-box">
+	<canvas bind:this={canvas}></canvas>
+</div>
+
+<div id="fullpage">
+	<div class="section"><Introduction /></div>
+	<div class="section"><Projects /></div>
+	<div class="section"><Team /></div>
+	<div class="section"><Joinus /></div>
+</div>
+
 {#if loading}
 	<Loader />
-{:else}
-	<div class="overall-bg"></div>
-
-	<div class="canvas-box">
-		<canvas bind:this={canvas}></canvas>
-	</div>
-
-	<div id="fullpage">
-		<div class="section"><Introduction /></div>
-		<div class="section"><Projects /></div>
-		<div class="section"><Team /></div>
-		<div class="section"><Joinus /></div>
-	</div>
 {/if}
 
 <style lang="scss">
