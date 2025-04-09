@@ -10,10 +10,13 @@
 		play_action,
 		visibleWidthAtZDepth,
 	} from "../lib/ropes";
+	import Loader from "../components/loader.svelte";
 	import Introduction from "../components/introduction.svelte";
 	import Projects from "../components/projects.svelte";
 	import Team from "../components/team.svelte";
 	import Joinus from "../components/joinus.svelte";
+
+	let loading = true;
 
 	type Section2 = {
 		anchor: HTMLElement | undefined;
@@ -189,18 +192,22 @@
 
 <!-- <a href="{base}/">Home5</a> -->
 
-<div class="overall-bg"></div>
+{#if loading}
+	<Loader />
+{:else}
+	<div class="overall-bg"></div>
 
-<div class="canvas-box">
-	<canvas bind:this={canvas}></canvas>
-</div>
+	<div class="canvas-box">
+		<canvas bind:this={canvas}></canvas>
+	</div>
 
-<div id="fullpage">
-	<div class="section"><Introduction /></div>
-	<div class="section"><Projects /></div>
-	<div class="section"><Team /></div>
-	<div class="section"><Joinus /></div>
-</div>
+	<div id="fullpage">
+		<div class="section"><Introduction /></div>
+		<div class="section"><Projects /></div>
+		<div class="section"><Team /></div>
+		<div class="section"><Joinus /></div>
+	</div>
+{/if}
 
 <style lang="scss">
 	@use "../assets/global";
