@@ -24,7 +24,7 @@
 	/* HTML: <div class="loader"></div> */
 	.loader {
 		width: $size;
-		height: $size / 2;
+		height: calc($size / 2);
 		background: #3967ec;
 		position: relative;
 		animation: l9-0 1.5s infinite linear;

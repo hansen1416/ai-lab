@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { MathUtils } from "three/src/math/MathUtils.js";
+import { FireFlies } from './FireFlies';
 
 const CAMERA_DISTANCE = 200;
 const CameraOffset = new THREE.Vector3(0, 10, CAMERA_DISTANCE);
@@ -15,6 +16,7 @@ export default class ThreeScene {
 	controls!: OrbitControls;
 	clock!: THREE.Clock;
 	pLights: THREE.Object3D[] = [];
+	fireflies!: FireFlies;
 
 	constructor(canvas: HTMLCanvasElement, width: number, height: number) {
 		if (instance) return instance;
@@ -63,6 +65,10 @@ export default class ThreeScene {
 	onFrameUpdate(stats?: { update: () => void }): void {
 
 		this.pLights.forEach(l => l.userData.update());
+
+		if (this.fireflies) {
+			this.fireflies.update(this.clock.getDelta());
+		}
 
 		this.renderer.render(this.scene, this.camera);
 		if (stats) stats.update();
@@ -176,6 +182,16 @@ export default class ThreeScene {
 		}
 
 		fireflyGroup.position.copy(position);
+	}
+
+	fireFliesBg() {
+		this.fireflies = new FireFlies(this.scene, {
+			groupCount: 1,
+			firefliesPerGroup: 50,
+			groupRadius: 5,
+			noiseTexture: null
+		});
+
 	}
 
 	unload(target: THREE.Object3D): void {

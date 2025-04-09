@@ -156,7 +156,9 @@
 
 				play_action(idle_action);
 
-				threeScene.addfireflys(new THREE.Vector3(initial_x, 0, 0));
+				threeScene.fireFliesBg();
+
+				// threeScene.addfireflys(new THREE.Vector3(initial_x, 0, 0));
 
 				loading = false;
 			})
