@@ -4,9 +4,7 @@
 
 {@render children()}
 
-<style>
-	@import "tailwindcss";
-
+<style lang="scss">
 	:global {
 		html {
 			margin: 0;

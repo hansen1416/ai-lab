@@ -1,4 +1,4 @@
-$font-white: #fff;
+$font-white: #fafaf9;
 $button-border: #fff;
 $corner-border-width: 2px;
 $corner-border-height: 30%;
@@ -55,6 +55,8 @@ $margin-1: 40px;
     justify-content: center;
     align-items: center;
 
+    @include galssblur();
+
     &:visited {
         color: inherit;
         text-decoration: none;
@@ -83,57 +85,16 @@ $margin-1: 40px;
 }
 
 
-@mixin text-top {
-
-    position: relative;
-
-    &::before,
-    &::after {
-        content: "";
-        position: absolute;
-        width: $text-border-size;
-        height: $text-border-size;
-        border-top: $text-border-width solid $text-border-color;
-        top: 0;
-        border-bottom: 0;
-    }
-
-    &::before {
-        left: 0;
-        border-left: $text-border-width solid $text-border-color;
-        z-index: 9;
-    }
-
-    &::after {
-        right: 0;
-        border-right: $text-border-width solid $text-border-color;
-    }
+@mixin galssblur($blur: 10px) {
+    backdrop-filter: blur($blur);
+    -webkit-backdrop-filter: blur($blur);
 }
 
-@mixin text-bottom {
 
-    width: 100%;
-    height: 100%;
-    position: relative;
-
-    &::before,
-    &::after {
-        content: "";
-        position: absolute;
-        width: $text-border-size;
-        height: $text-border-size;
-        border-bottom: $text-border-width solid $text-border-color;
-        bottom: 0;
-        border-top: 0;
-    }
-
-    &::before {
-        left: 0;
-        border-left: $text-border-width solid $text-border-color;
-    }
-
-    &::after {
-        right: 0;
-        border-right: $text-border-width solid $text-border-color;
-    }
+@mixin glassmorphism($background: rgba(255, 255, 255, 0.1), $blur: 10px) {
+    background: $background;
+    backdrop-filter: blur($blur);
+    -webkit-backdrop-filter: blur($blur);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
