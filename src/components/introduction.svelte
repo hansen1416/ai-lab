@@ -46,7 +46,7 @@
 		display: flex;
 		flex-direction: column;
 		width: calc(50vw - global.$margin-1);
-		height: calc(100svh - global.$margin-1 * 2);
+		height: 100%;
 	}
 
 	.top-bar {

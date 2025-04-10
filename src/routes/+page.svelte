@@ -15,6 +15,7 @@
 	import Projects from "../components/projects.svelte";
 	import Team from "../components/team.svelte";
 	import Joinus from "../components/joinus.svelte";
+	import "fullpage.js/dist/fullpage.css";
 
 	let loading = $state(true);
 
@@ -88,8 +89,12 @@
 			// licenseKey: "YOUR_KEY_HERE",
 			anchors: ["introduction", "projects", "team", "joinus"],
 			autoScrolling: true,
+			scrollBar: false,
+			scrollOverflow: false,
 			loopTop: false,
 			loopBottom: false,
+			navigation: true,
+			navigationPosition: "right",
 			beforeLeave: () => {
 				// fired right before leaving the section, just before the transition takes place.
 				// cancel the scroll by returning false.
@@ -227,6 +232,40 @@
 <style lang="scss">
 	@use "../assets/global";
 
+	:global {
+		#fp-nav.fp-right {
+			right: 36px;
+			ul {
+				li {
+					width: 36px;
+					height: 36px;
+					margin: 18px;
+					a {
+						span {
+							background: white;
+						}
+					}
+				}
+			}
+		}
+
+		.fp-slidesNav {
+			right: 36px;
+			ul {
+				li {
+					width: 20px;
+					height: 20px;
+					margin: 12px;
+					a {
+						span {
+							background: white;
+						}
+					}
+				}
+			}
+		}
+	}
+
 	.overall-bg {
 		background: radial-gradient(
 			ellipse at 70% 50%,
@@ -258,7 +297,8 @@
 		background-color: transparent;
 
 		.section {
-			height: calc(100vh - global.$margin-1 * 2);
+			height: 100vh;
+			box-sizing: border-box;
 			display: flex;
 			position: relative;
 			color: global.$font-white;
