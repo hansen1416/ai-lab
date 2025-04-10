@@ -59,8 +59,6 @@
 
 				a {
 					@include global.button-bottom;
-
-					background-color: global.$button-background;
 				}
 			}
 		}

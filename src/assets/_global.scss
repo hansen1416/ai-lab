@@ -8,7 +8,7 @@ $text-border-size: 40px;
 $text-border-width: 1px;
 $text-border-color: #fff;
 $title-font-size: 36px;
-$button-background: #433581;
+$button-background: rgb(67, 53, 129, 0.6);
 $top-bar-height: 60px;
 
 $margin-1: 40px;
@@ -54,6 +54,7 @@ $margin-1: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: $button-background;
 
     @include galssblur();
 

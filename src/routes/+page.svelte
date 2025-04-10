@@ -212,7 +212,10 @@
 
 <!-- <a href="{base}/">Home5</a> -->
 
-<div class="overall-bg"></div>
+<div
+	class="overall-bg"
+	style="background-image: url({base}/images/bg.png);"
+></div>
 
 <div class="canvas-box">
 	<canvas bind:this={canvas}></canvas>
@@ -267,12 +270,12 @@
 	}
 
 	.overall-bg {
-		background: radial-gradient(
-			ellipse at 70% 50%,
-			#392256 0%,
-			#210f37 40%,
-			#040126 100%
-		);
+		// background: radial-gradient(
+		// 	ellipse at 70% 50%,
+		// 	#392256 0%,
+		// 	#210f37 40%,
+		// 	#040126 100%
+		// );
 		min-height: 100vh;
 		width: 100%;
 		margin: 0;
@@ -280,6 +283,10 @@
 		top: 0;
 		left: 0;
 		z-index: -99;
+		// strech the background image to cover the whole screen
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
 	}
 
 	.canvas-box {
