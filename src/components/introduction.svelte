@@ -10,29 +10,12 @@
 		<div class="desc-inner">
 			<div class="title">Brighton AI Robotics (AIR) Force Projects</div>
 			<div class="content">
-				<p>Where code meets cognition and machines learn to move.</p>
-
 				<p>
-					The AI & Robotics Lab at the University of Brighton is a
-					cutting-edge research space where artificial intelligence,
-					machine learning, and robotics converge. Focused on
-					real-world impact, the lab develops intelligent systems
-					capable of perception, decision-making, and autonomous
-					behavior. From humanoid robots to swarm robotics, the lab
-					empowers innovation in healthcare, manufacturing, and
-					creative industries.
-				</p>
-
-				<p>
-					Equipped with state-of-the-art tools, including robotic
-					arms, mobile robots, simulation platforms, and deep learning
-					infrastructure, it serves as a launchpad for pioneering
-					research and student-led breakthroughs.
-				</p>
-
-				<p>
-					Here, machines think, adapt, and evolve. The future is
-					built—not imagined.
+					Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+					Corrupti officiis exercitationem sapiente labore
+					praesentium, omnis porro tempore tenetur placeat veniam
+					soluta itaque magnam. Voluptatum nihil quam dolor, quod esse
+					dolores.
 				</p>
 			</div>
 		</div>
@@ -45,63 +28,75 @@
 	.intro {
 		display: flex;
 		flex-direction: column;
-		width: calc(50vw - global.$margin-1);
-		height: 100%;
-	}
-
-	.top-bar {
-		display: flex;
-		flex-direction: row;
-		height: global.$top-bar-height;
+		justify-content: center;
 		align-items: center;
-		justify-content: flex-start;
-		margin-bottom: global.$margin-1;
-
-		.nav {
-			text-transform: uppercase;
-			font-size: 18px;
-			margin-right: 36px;
-			letter-spacing: 4px;
-			width: 180px;
-			height: global.$top-bar-height;
-
-			@include global.button-top;
-
-			&:last-child {
-				border-right: none;
-			}
-
-			a {
-				@include global.button-bottom;
-
-				background-color: global.$button-background;
-			}
-		}
-	}
-
-	.desc {
 		width: 100%;
-		min-height: 0;
-		flex: 1 1 auto;
-		display: flex;
+		height: 100%;
 
-		.desc-inner {
-			box-sizing: border-box;
-			padding: global.$margin-1;
-			flex: 1 1 auto;
-		}
-
-		.title {
-			font-size: global.$title-font-size;
+		.top-bar {
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			height: global.$top-bar-height;
+			align-items: center;
+			justify-content: flex-start;
 			margin-bottom: global.$margin-1;
+
+			.nav {
+				text-transform: uppercase;
+				font-size: 18px;
+				margin-right: 36px;
+				letter-spacing: 4px;
+				width: 180px;
+				height: global.$top-bar-height;
+
+				@include global.button-top;
+
+				&:last-child {
+					border-right: none;
+				}
+
+				a {
+					@include global.button-bottom;
+
+					background-color: global.$button-background;
+				}
+			}
 		}
 
-		.content {
+		.desc {
+			width: 100%;
+			min-height: 0;
+			flex: 1 1 auto;
 			display: flex;
 			flex-direction: column;
-			width: 80%;
-			font-size: 20px;
-			line-height: 30px;
+			justify-content: center;
+			align-items: center;
+
+			.desc-inner {
+				width: 80%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				padding: global.$margin-1;
+
+				.title {
+					$font-size: 64px;
+					line-height: $font-size;
+					font-size: $font-size;
+					margin-bottom: $font-size;
+					text-align: center;
+				}
+
+				.content {
+					box-sizing: border-box;
+					font-size: 20px;
+					line-height: 30px;
+					text-align: center;
+					width: 60%;
+				}
+			}
 		}
 	}
 </style>
