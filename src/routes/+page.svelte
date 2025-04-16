@@ -376,6 +376,7 @@
 				font-weight: bold;
 
 				@include global.opacity-ease;
+				@include global.operation-font;
 			}
 		}
 
@@ -394,6 +395,7 @@
 				height: global.$top-bar-height;
 
 				@include global.flex-center;
+				@include global.operation-font;
 
 				a {
 					color: inherit;

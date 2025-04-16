@@ -90,7 +90,6 @@
 				animation: rotateBackground 10s linear infinite;
 
 				@include global.flex-center;
-				@include global.content-font;
 			}
 
 			@keyframes rotateBackground {
@@ -122,6 +121,7 @@
 
 			@include global.flex-center;
 			@include global.opacity-ease;
+			@include global.operation-font;
 
 			a {
 				@include global.link;

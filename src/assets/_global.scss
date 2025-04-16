@@ -125,8 +125,8 @@ $margin-1: 40px;
     align-items: center;
 }
 
-@mixin content-font {
-    font-family: "Times New Roman", Times, serif;
+@mixin operation-font {
+    font-family: "Gidole", sans-serif;
 }
 
 @mixin opacity-ease {
