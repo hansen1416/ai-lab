@@ -311,6 +311,7 @@
 			color: global.$font-white;
 			background-color: transparent;
 			padding: global.$margin-1;
+			overflow: hidden;
 		}
 
 		:global(.fp-watermark) {
