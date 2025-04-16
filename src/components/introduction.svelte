@@ -77,18 +77,17 @@
 			.desc-inner {
 				width: 58%;
 				margin-left: -12%;
-				color: global.$font-white;
-				font-size: 56px;
-
+				// color: global.$font-white;
+				font-size: 64px;
 				will-change: transform;
-				background-color: #fff;
+				background-color: global.$font-white;
 				background-repeat: no-repeat;
 				-webkit-text-fill-color: transparent;
 				-webkit-background-clip: text;
 				background-clip: text;
 
 				@include global.flex-center;
-				@include global.conten-font;
+				@include global.content-font;
 			}
 		}
 
