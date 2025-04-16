@@ -18,6 +18,15 @@
 			tempore tenetur placeat veniam soluta itaque magnam.
 		</div>
 	</div>
+
+	<div class="scroll">
+		<a href="#projects">Scroll to explore</a>
+		<div class="container">
+			<div class="chevron"></div>
+			<div class="chevron"></div>
+			<div class="chevron"></div>
+		</div>
+	</div>
 </div>
 
 <style lang="scss">
@@ -80,6 +89,89 @@
 
 				@include global.flex-center;
 				@include global.conten-font;
+			}
+		}
+
+		.scroll {
+			text-transform: uppercase;
+			position: absolute;
+			bottom: 40px;
+			right: 80px;
+			height: 30px;
+			cursor: pointer;
+
+			@include global.flex-center;
+
+			a {
+				@include global.link;
+			}
+
+			.container {
+				$base: 4px;
+				$size: 20px;
+
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: $size;
+				height: $size;
+				margin: $size * -1.5 0 0 $size;
+
+				.chevron {
+					position: absolute;
+					width: $base * 3.5;
+					height: $base * 0.8;
+					opacity: 0;
+					transform: scale(0.3);
+					animation: move-chevron 3s ease-out infinite;
+				}
+
+				.chevron:first-child {
+					animation: move-chevron 3s ease-out 1s infinite;
+				}
+
+				.chevron:nth-child(2) {
+					animation: move-chevron 3s ease-out 2s infinite;
+				}
+
+				.chevron:before,
+				.chevron:after {
+					content: "";
+					position: absolute;
+					top: 0;
+					height: 100%;
+					width: 50%;
+					background: #fff;
+				}
+
+				.chevron:before {
+					left: 0;
+					transform: skewY(30deg);
+				}
+
+				.chevron:after {
+					right: 0;
+					width: 50%;
+					transform: skewY(-30deg);
+				}
+
+				@keyframes move-chevron {
+					25% {
+						opacity: 1;
+					}
+					33.3% {
+						opacity: 1;
+						transform: translateY($base * 3.8);
+					}
+					66.6% {
+						opacity: 1;
+						transform: translateY($base * 5.2);
+					}
+					100% {
+						opacity: 0;
+						transform: translateY($base * 8) scale(0.5);
+					}
+				}
 			}
 		}
 	}

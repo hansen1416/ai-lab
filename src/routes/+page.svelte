@@ -232,6 +232,7 @@
 	<div class="logo">Brighton AI Robotics (AIR) Force Projects</div>
 
 	<div class="navs">
+		<div class="nav"><a href="#introduction">Intro</a></div>
 		<div class="nav"><a href="#projects">Projects</a></div>
 		<div class="nav"><a href="#team">Team</a></div>
 		<div class="nav"><a href="#joinus">Join Us</a></div>
