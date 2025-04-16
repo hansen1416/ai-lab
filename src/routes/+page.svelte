@@ -368,7 +368,9 @@
 			@include global.flex-center;
 
 			img {
-				margin-right: global.$margin-1/2;
+				$size: 32px;
+
+				margin-right: calc(global.$margin-1 * 4 / 3 - $size);
 				background-color: #fff;
 			}
 
