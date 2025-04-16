@@ -101,7 +101,7 @@
 				// fired right before leaving the section, just before the transition takes place.
 				// cancel the scroll by returning false.
 				time_elapsed = performance.now();
-				console.log(origin.index);
+
 				if (origin.index === 0) {
 					// if the current section is the first one, we need to hide the title
 					in_home = false;
@@ -339,15 +339,6 @@
 			background-color: transparent;
 			padding: global.$margin-1;
 			overflow: hidden;
-		}
-
-		:global(.fp-watermark) {
-			position: absolute;
-			bottom: 10px;
-			right: 10px;
-			padding: 4px;
-			font-size: 14px;
-			background-color: rgba(200, 200, 200, 0.3);
 		}
 	}
 

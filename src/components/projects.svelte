@@ -23,6 +23,8 @@
 		justify-content: space-between;
 		width: 100%;
 		height: 100%;
+		box-sizing: border-box;
+		padding: global.$margin-1 global.$margin-1 0 global.$margin-1 * 2;
 
 		.l {
 			width: calc(40vw - global.$margin-1);
@@ -39,9 +41,10 @@
 		}
 
 		.project-list {
-			margin: global.$margin-1;
 			display: flex;
 			flex-direction: row;
+			flex: 1 1 auto;
+			padding: 0 global.$margin-1;
 
 			.item {
 				margin-right: 8px;
