@@ -85,7 +85,7 @@
 				-webkit-text-fill-color: transparent;
 				-webkit-background-clip: text;
 				background-clip: text;
-				animation: rotateBackground 3s linear infinite;
+				animation: rotateBackground 10s linear infinite;
 
 				@include global.flex-center;
 				@include global.content-font;
