@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { base } from "$app/paths";
+
+	export let in_home;
 </script>
 
 <div class="intro">
@@ -19,7 +21,7 @@
 		</div>
 	</div>
 
-	<div class="scroll">
+	<div class="scroll" class:hidden={!in_home}>
 		<a href="#projects">Scroll to explore</a>
 		<div class="container">
 			<div class="chevron"></div>
@@ -119,6 +121,7 @@
 			cursor: pointer;
 
 			@include global.flex-center;
+			@include global.opacity-ease;
 
 			a {
 				@include global.link;

@@ -233,7 +233,7 @@
 </div>
 
 <div id="fullpage">
-	<div class="section"><Introduction /></div>
+	<div class="section"><Introduction {in_home} /></div>
 	<div class="section"><Projects /></div>
 	<div class="section"><Team /></div>
 	<div class="section"><Joinus /></div>
@@ -374,13 +374,8 @@
 			span {
 				font-size: 32px;
 				font-weight: bold;
-				transition: all 0.6s ease;
-				opacity: 1;
 
-				&.hidden {
-					opacity: 0;
-					transition: all 0.6s ease;
-				}
+				@include global.opacity-ease;
 			}
 		}
 
