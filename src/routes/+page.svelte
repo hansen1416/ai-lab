@@ -374,6 +374,7 @@
 			span {
 				font-size: 32px;
 				font-weight: bold;
+				margin-top: 8px;
 
 				@include global.opacity-ease;
 				@include global.operation-font;
@@ -391,7 +392,7 @@
 				font-weight: bold;
 				margin-right: global.$margin-1;
 				letter-spacing: 4px;
-				width: 120px;
+				width: 130px;
 				height: global.$top-bar-height;
 
 				@include global.flex-center;

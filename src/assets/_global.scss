@@ -126,7 +126,8 @@ $margin-1: 40px;
 }
 
 @mixin operation-font {
-    font-family: "Gidole", sans-serif;
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
 }
 
 @mixin opacity-ease {
