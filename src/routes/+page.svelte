@@ -242,9 +242,18 @@
 <div class="top-bar">
 	<div class="logo">
 		<img src="{base}/images/logo.png" alt="" width="32px" height="32px" />
-		<span class:hidden={!in_home}>
-			Brighton AI Robotics (AIR) Force Projects</span
-		>
+		<div>
+			<span class:hidden={!in_home}>
+				Brighton AI Robotics (AIR) Force Projects</span
+			>
+			<span class:hidden={current_section_index !== 1}
+				>Research Projects</span
+			>
+			<span class:hidden={current_section_index !== 2}>Team</span>
+			<span class:hidden={current_section_index !== 3}
+				>Study or Work With Us</span
+			>
+		</div>
 	</div>
 
 	<div class="navs">
@@ -362,13 +371,22 @@
 				margin-right: global.$margin-1/2;
 				background-color: #fff;
 			}
-			span {
-				font-size: 32px;
-				font-weight: bold;
-				margin-top: 8px;
 
-				@include global.opacity-ease;
-				@include global.operation-font;
+			& > div {
+				position: relative;
+				width: 660px;
+				height: 32px;
+
+				span {
+					font-size: 32px;
+					font-weight: bold;
+					position: absolute;
+					top: 4px;
+					left: 0;
+
+					@include global.opacity-ease;
+					@include global.operation-font;
+				}
 			}
 		}
 

@@ -2,7 +2,6 @@
 
 <div class="projects">
 	<div class="l">
-		<div class="title">Research Projects</div>
 		<div class="desc">
 			<i> Advancing closer to the future of intelligent systems.</i>
 		</div>
@@ -24,11 +23,10 @@
 		width: 100%;
 		height: 100%;
 		box-sizing: border-box;
-		padding: global.$margin-1 global.$margin-1 0 global.$margin-1 * 2;
+		padding: global.$margin-1 * 2 global.$margin-1 0 global.$margin-1 * 3;
 
 		.l {
 			width: calc(40vw - global.$margin-1);
-			padding: global.$margin-1;
 
 			.title {
 				font-size: global.$title-font-size;

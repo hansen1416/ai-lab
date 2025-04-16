@@ -105,7 +105,6 @@
 </script>
 
 <div class="team">
-	<div class="title">Team</div>
 	<div>
 		<span>STAFF</span>
 		{#each STAFF as member}
