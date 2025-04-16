@@ -46,6 +46,8 @@
 
 	let play_animation = $state(false);
 
+	let in_home = $state(true);
+
 	let time_elapsed = 0;
 
 	const clock = new THREE.Clock();
@@ -95,10 +97,15 @@
 			loopBottom: false,
 			navigation: true,
 			navigationPosition: "right",
-			beforeLeave: () => {
+			beforeLeave: (origin: Section2) => {
 				// fired right before leaving the section, just before the transition takes place.
 				// cancel the scroll by returning false.
 				time_elapsed = performance.now();
+				console.log(origin.index);
+				if (origin.index === 0) {
+					// if the current section is the first one, we need to hide the title
+					in_home = false;
+				}
 
 				return true;
 			},
@@ -107,6 +114,10 @@
 				current_section_index = destination.index;
 
 				play_animation = true;
+
+				if (destination.index === 0) {
+					in_home = true;
+				}
 			},
 		});
 
@@ -229,7 +240,12 @@
 </div>
 
 <div class="top-bar">
-	<div class="logo">Brighton AI Robotics (AIR) Force Projects</div>
+	<div class="logo">
+		<img src="{base}/images/logo.png" alt="" width="32px" height="32px" />
+		<span class:hidden={!in_home}>
+			Brighton AI Robotics (AIR) Force Projects</span
+		>
+	</div>
 
 	<div class="navs">
 		<div class="nav"><a href="#introduction">Intro</a></div>
@@ -349,8 +365,23 @@
 		@include global.flex-between;
 
 		.logo {
-			font-size: 32px;
-			font-weight: bold;
+			@include global.flex-center;
+
+			img {
+				margin-right: global.$margin-1/2;
+				background-color: #fff;
+			}
+			span {
+				font-size: 32px;
+				font-weight: bold;
+				transition: all 0.6s ease;
+				opacity: 1;
+
+				&.hidden {
+					opacity: 0;
+					transition: all 0.6s ease;
+				}
+			}
 		}
 
 		.navs {
