@@ -214,7 +214,7 @@
 
 <div
 	class="overall-bg"
-	style="background-image: url({base}/images/bg.png);"
+	style="background-image: url({base}/images/wave-bg.png);"
 ></div>
 
 <div class="canvas-box">
