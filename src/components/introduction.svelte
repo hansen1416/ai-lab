@@ -85,9 +85,28 @@
 				-webkit-text-fill-color: transparent;
 				-webkit-background-clip: text;
 				background-clip: text;
+				animation: rotateBackground 3s linear infinite;
 
 				@include global.flex-center;
 				@include global.content-font;
+			}
+
+			@keyframes rotateBackground {
+				0% {
+					background-position: -40% 50%;
+				}
+				25% {
+					background-position: 40% 50%;
+				}
+				50% {
+					background-position: 120% 50%;
+				}
+				75% {
+					background-position: 40% 50%;
+				}
+				100% {
+					background-position: -40% 50%;
+				}
 			}
 		}
 
