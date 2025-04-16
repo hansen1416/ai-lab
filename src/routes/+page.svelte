@@ -214,7 +214,7 @@
 
 <div
 	class="overall-bg"
-	style="background-image: url({base}/images/wave-bg.png);"
+	style="background-image: url({base}/images/bg.png);"
 ></div>
 
 <div class="canvas-box">
@@ -226,6 +226,16 @@
 	<div class="section"><Projects /></div>
 	<div class="section"><Team /></div>
 	<div class="section"><Joinus /></div>
+</div>
+
+<div class="top-bar">
+	<div class="logo">Brighton AI Robotics (AIR) Force Projects</div>
+
+	<div class="navs">
+		<div class="nav"><a href="#projects">Projects</a></div>
+		<div class="nav"><a href="#team">Team</a></div>
+		<div class="nav"><a href="#joinus">Join Us</a></div>
+	</div>
 </div>
 
 {#if loading}
@@ -321,6 +331,49 @@
 			padding: 4px;
 			font-size: 14px;
 			background-color: rgba(200, 200, 200, 0.3);
+		}
+	}
+
+	.top-bar {
+		position: fixed;
+		top: global.$margin-1;
+		left: 0;
+		width: 100%;
+		flex-direction: row;
+		height: global.$top-bar-height;
+		color: global.$font-white;
+		padding: 0 global.$margin-1 * 2;
+		box-sizing: border-box;
+
+		@include global.flex-between;
+
+		.logo {
+			font-size: 32px;
+			font-weight: bold;
+		}
+
+		.navs {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: flex-end;
+			.nav {
+				text-transform: uppercase;
+				font-size: 24px;
+				font-weight: bold;
+				margin-right: global.$margin-1;
+				letter-spacing: 4px;
+				width: 120px;
+				height: global.$top-bar-height;
+
+				@include global.flex-center;
+
+				a {
+					color: inherit;
+
+					@include global.link;
+				}
+			}
 		}
 	}
 </style>
