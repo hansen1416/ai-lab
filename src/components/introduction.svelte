@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { base } from "$app/paths";
 
-	export let in_home;
+	export let current_section_index;
 </script>
 
 <div class="intro">
@@ -21,7 +21,7 @@
 		</div>
 	</div>
 
-	<div class="scroll" class:hidden={!in_home}>
+	<div class="scroll" class:hidden={current_section_index !== 0}>
 		<a href="#projects">Scroll to explore</a>
 		<div class="container">
 			<div class="chevron"></div>

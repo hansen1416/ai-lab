@@ -46,8 +46,6 @@
 
 	let play_animation = $state(false);
 
-	let in_home = $state(true);
-
 	let time_elapsed = 0;
 
 	const clock = new THREE.Clock();
@@ -97,27 +95,19 @@
 			loopBottom: false,
 			navigation: true,
 			navigationPosition: "right",
-			beforeLeave: (origin: Section2) => {
+			afterRender: function (origin: Section2) {
+				current_section_index = origin.index;
+			},
+			beforeLeave: (_: Section2, destination: Section2) => {
+				current_section_index = destination.index;
 				// fired right before leaving the section, just before the transition takes place.
 				// cancel the scroll by returning false.
 				time_elapsed = performance.now();
 
-				if (origin.index === 0) {
-					// if the current section is the first one, we need to hide the title
-					in_home = false;
-				}
-
 				return true;
 			},
-			afterLoad: (_: Section2, destination: Section2) => {
-				// Callback fired once the sections have been loaded, after the scrolling has ended.
-				current_section_index = destination.index;
-
+			afterLoad: () => {
 				play_animation = true;
-
-				if (destination.index === 0) {
-					in_home = true;
-				}
 			},
 		});
 
@@ -233,7 +223,7 @@
 </div>
 
 <div id="fullpage">
-	<div class="section"><Introduction {in_home} /></div>
+	<div class="section"><Introduction {current_section_index} /></div>
 	<div class="section"><Projects /></div>
 	<div class="section"><Team /></div>
 	<div class="section"><Joinus /></div>
@@ -243,7 +233,7 @@
 	<div class="logo">
 		<img src="{base}/images/logo.png" alt="" width="32px" height="32px" />
 		<div>
-			<span class:hidden={!in_home}>
+			<span class:hidden={current_section_index !== 0}>
 				Brighton AI Robotics (AIR) Force Projects</span
 			>
 			<span class:hidden={current_section_index !== 1}
