@@ -45,6 +45,7 @@
 			font-size: 24px;
 			background-color: global.$button-background;
 			clip-path: polygon(0 0, 95% 0, 100% 30%, 100% 100%, 0 100%);
+			min-width: 200px;
 
 			@include global.flex-center;
 

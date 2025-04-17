@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { base } from "$app/paths";
+	import Tabs from "./tabs.svelte";
+
+	const tabs = ["Staff", "Students"];
 
 	const STAFF = [
 		{
@@ -104,8 +107,59 @@
 	];
 </script>
 
+{#snippet staff()}
+	<div class="members">
+		{#each STAFF as member}
+			<div class="member">
+				<img src={member.image} alt={member.name} />
+				<h3>{member.name}</h3>
+				<p>{member.role}</p>
+				<div class="social">
+					{#each member.social as link}
+						<a
+							href={link.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label={link.icon}
+						>
+							<i class={link.icon}></i>
+						</a>
+					{/each}
+				</div>
+			</div>
+		{/each}
+	</div>
+{/snippet}
+
+{#snippet students()}
+	<div class="members">
+		{#each STUDENTS as student}
+			<div class="member">
+				<img src={student.image} alt={student.name} />
+				<h3>{student.name}</h3>
+				<p>{student.project}</p>
+				<div class="social">
+					{#each student.social as link}
+						<a
+							href={link.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label={link.icon}
+						>
+							<i class={link.icon}></i>
+						</a>
+					{/each}
+				</div>
+			</div>
+		{/each}
+	</div>
+{/snippet}
+
 <div class="team">
-	<div>
+	<div class="staff-students">
+		<Tabs {tabs} {staff} {students} />
+	</div>
+	<!-- <div>
 		<span>STAFF</span>
 		{#each STAFF as member}
 			<div class="member">
@@ -148,15 +202,44 @@
 				</div>
 			</div>
 		{/each}
-	</div>
+	</div> -->
 </div>
 
 <style lang="scss">
 	@use "../assets/global";
-
 	.team {
-		.title {
-			font-size: global.$title-font-size;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: space-between;
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
+		padding: global.$margin-1 * 2 global.$margin-1 0 global.$margin-1 * 7/3;
+
+		.staff-students {
+			display: flex;
+			flex-direction: column;
+			flex: 1 1 auto;
+
+			.members {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+
+				.member {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					width: 460px;
+					img {
+						width: 180px;
+						height: 180px;
+						border-radius: 50%;
+					}
+				}
+			}
 		}
 	}
 </style>

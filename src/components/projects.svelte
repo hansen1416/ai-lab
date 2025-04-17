@@ -1,8 +1,6 @@
 <script lang="ts">
 	import Tabs from "./tabs.svelte";
 
-	let tab = $state(1);
-
 	const projects = [
 		"Multi-modal Control for Robotic Devices",
 		"Central Artificial Intelligence",
@@ -67,11 +65,6 @@
 		height: 100%;
 		box-sizing: border-box;
 		padding: global.$margin-1 * 2 global.$margin-1 0 global.$margin-1 * 7/3;
-
-		.title {
-			font-size: global.$title-font-size;
-			margin-bottom: 8px;
-		}
 
 		.desc {
 			font-size: 20px;
