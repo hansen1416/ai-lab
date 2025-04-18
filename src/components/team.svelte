@@ -110,7 +110,7 @@
 {#snippet staff()}
 	<div class="members">
 		{#each STAFF as member}
-			<div class="member">
+			<div class="member staff">
 				<img src={member.image} alt={member.name} />
 				<h3>{member.name}</h3>
 				<p>{member.role}</p>
@@ -134,7 +134,7 @@
 {#snippet students()}
 	<div class="members">
 		{#each STUDENTS as student}
-			<div class="member">
+			<div class="member student">
 				<img src={student.image} alt={student.name} />
 				<h3>{student.name}</h3>
 				<p>{student.project}</p>
@@ -183,16 +183,10 @@
 			padding-top: global.$margin-1;
 
 			.member {
-				$w: 375px;
-
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 				justify-content: center;
-				width: $w;
-				height: calc($w * 5 / 4);
-				margin-right: global.$margin-1;
-				padding: calc(global.$margin-1 / 2);
 				box-sizing: border-box;
 				// background-color: rgba(240, 248, 255, 0.4);
 				// border-radius: 30px;
@@ -221,6 +215,22 @@
 				@include global.galssblur(2px);
 				&:last-child {
 					margin-right: 0;
+				}
+
+				&.staff {
+					$w: 375px;
+					width: $w;
+					height: calc($w * 5 / 4);
+					margin-right: global.$margin-1;
+					padding: calc(global.$margin-1 / 2);
+				}
+
+				&.student {
+					$w: 300px;
+					width: $w;
+					height: calc($w * 5 / 4);
+					// margin-right: global.$margin-1;
+					padding: calc(global.$margin-1 / 2);
 				}
 
 				img {
