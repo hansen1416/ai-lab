@@ -361,7 +361,7 @@
 				$size: 32px;
 
 				margin-right: calc(global.$margin-1 * 4 / 3 - $size);
-				background-color: #fff;
+				background-color: global.$font-white;
 			}
 
 			& > div {

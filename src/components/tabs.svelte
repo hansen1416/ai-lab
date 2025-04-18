@@ -87,8 +87,6 @@
 		width: 100%;
 		font-size: 24px;
 
-		@include global.galssblur(2px);
-
 		// .decor {
 		// 	$w: 35px;
 		// 	position: absolute;
