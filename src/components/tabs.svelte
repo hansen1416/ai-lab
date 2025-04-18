@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from "$app/paths";
 	let { tabs, ...contents } = $props();
 
 	let tab = $state(0);
@@ -27,6 +28,10 @@
 
 {#each content_array as content_snippet, index}
 	<div class="tab-content" class:active={tab === index}>
+		<div
+			class="decor"
+			style="background-image: url({base}/images/decor.svg);"
+		></div>
 		{@render content_snippet()}
 	</div>
 {/each}
@@ -74,13 +79,28 @@
 	}
 
 	.tab-content {
+		position: relative;
 		display: none;
-		padding: global.$margin-1 0 0 0;
+		margin-top: calc(global.$margin-1 / 2);
+		padding: calc(global.$margin-1 / 2) 0 0 0;
 		flex: 1 1 auto;
-		width: 90%;
+		width: 82%;
 		font-size: 24px;
 
 		@include global.galssblur(2px);
+
+		// .decor {
+		// 	$w: 35px;
+		// 	position: absolute;
+		// 	width: $w;
+		// 	height: 80%;
+		// 	top: 10%;
+		// 	// margin-top: -200px;
+		// 	left: -50px;
+		// 	background-size: 100% 100%;
+		// 	background-repeat: no-repeat;
+		// 	background-position: center;
+		// }
 	}
 	.tab-content.active {
 		display: block;
