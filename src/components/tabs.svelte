@@ -37,25 +37,29 @@
 	.tabs {
 		display: flex;
 		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
 
 		.tab {
-			padding: 10px 20px;
-			margin-right: 5px;
-			border-radius: 5px 5px 0 0;
+			margin-right: calc(global.$margin-1 / 2);
 			font-size: 24px;
-			background-color: global.$button-background;
-			clip-path: polygon(0 0, 95% 0, 100% 30%, 100% 100%, 0 100%);
+			// clip-path: polygon(0 0, 95% 0, 100% 30%, 100% 100%, 0 100%);
 			min-width: 200px;
+			height: 60px;
 
-			@include global.flex-center;
+			// @include global.flex-center;
+			@include global.button-top;
 
 			button {
-				background: none;
-				border: none;
-				color: inherit;
-				width: 100%;
-				height: 100%;
-				cursor: pointer;
+				// background: none;
+				// border: none;
+				// color: inherit;
+				// width: 100%;
+				// height: 100%;
+				// cursor: pointer;
+
+				@include global.operation-font;
+				@include global.button-bottom;
 			}
 		}
 		.tab.active {

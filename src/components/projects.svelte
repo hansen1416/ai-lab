@@ -12,19 +12,19 @@
 		Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
 		tempore voluptatum quisquam saepe sed pariatur enim quibusdam asperiores
 		tempora earum quis aliquid repudiandae dolores quaerat voluptate fugiat
-		harum doloremque."
+		harum doloremque.
 	</p>
 	<p>
 		Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
 		tempore voluptatum quisquam saepe sed pariatur enim quibusdam asperiores
 		tempora earum quis aliquid repudiandae dolores quaerat voluptate fugiat
-		harum doloremque."
+		harum doloremque.
 	</p>
 	<p>
 		Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
 		tempore voluptatum quisquam saepe sed pariatur enim quibusdam asperiores
 		tempora earum quis aliquid repudiandae dolores quaerat voluptate fugiat
-		harum doloremque."
+		harum doloremque.
 	</p>
 {/snippet}
 
@@ -33,20 +33,20 @@
 		Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
 		tempore voluptatum quisquam saepe sed pariatur enim quibusdam asperiores
 		tempora earum quis aliquid repudiandae dolores quaerat voluptate fugiat
-		harum doloremque."
+		harum doloremque.
 	</p>
 	<p>
 		Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
 		tempore voluptatum quisquam saepe sed pariatur enim quibusdam asperiores
 		tempora earum quis aliquid repudiandae dolores quaerat voluptate fugiat
-		harum doloremque."
+		harum doloremque.
 	</p>
 {/snippet}
 
 <div class="projects">
-	<div class="desc">
+	<!-- <div class="desc">
 		<i> Advancing closer to the future of intelligent systems.</i>
-	</div>
+	</div> -->
 
 	<div class="project-list">
 		<Tabs tabs={projects} {content1} {content2} />

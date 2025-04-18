@@ -1,7 +1,6 @@
 $font-white: #fafaf9;
 $button-border: #fff;
 $corner-border-width: 2px;
-$corner-border-height: 30%;
 $corner-border-size-top: 12px;
 $corner-border-size-side: 1px;
 $text-border-size: 40px;
@@ -24,7 +23,7 @@ $margin-1: 40px;
         content: "";
         position: absolute;
         width: $corner-border-width;
-        height: $corner-border-height;
+        height: 0;
         border-top: $corner-border-size-top solid $button-border;
         top: 0;
         border-bottom: 0;
@@ -54,7 +53,10 @@ $margin-1: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
+    padding: 0 $margin-1;
     background-color: $button-background;
+    cursor: pointer;
 
     @include galssblur();
 
@@ -68,7 +70,7 @@ $margin-1: 40px;
         content: "";
         position: absolute;
         width: $corner-border-width;
-        height: $corner-border-height;
+        height: calc(100% - $corner-border-size-top);
         border-bottom: $corner-border-size-top solid $button-border;
         bottom: 0;
         border-top: 0;
