@@ -64,7 +64,8 @@
 		width: 100%;
 		height: 100%;
 		box-sizing: border-box;
-		padding: global.$margin-1 * 2 global.$margin-1 0 global.$margin-1 * 7/3;
+		padding: global.$margin-1 * 2 global.$margin-1 0
+			calc(global.$margin-1 * 7 / 3);
 
 		.desc {
 			font-size: 20px;
