@@ -8,39 +8,43 @@
 </script>
 
 {#snippet content1()}
-	<p>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
-		tempore voluptatum quisquam saepe sed pariatur enim quibusdam asperiores
-		tempora earum quis aliquid repudiandae dolores quaerat voluptate fugiat
-		harum doloremque.
-	</p>
-	<p>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
-		tempore voluptatum quisquam saepe sed pariatur enim quibusdam asperiores
-		tempora earum quis aliquid repudiandae dolores quaerat voluptate fugiat
-		harum doloremque.
-	</p>
-	<p>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
-		tempore voluptatum quisquam saepe sed pariatur enim quibusdam asperiores
-		tempora earum quis aliquid repudiandae dolores quaerat voluptate fugiat
-		harum doloremque.
-	</p>
+	<div class="project-desc">
+		<p>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
+			tempore voluptatum quisquam saepe sed pariatur enim quibusdam
+			asperiores tempora earum quis aliquid repudiandae dolores quaerat
+			voluptate fugiat harum doloremque.
+		</p>
+		<p>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
+			tempore voluptatum quisquam saepe sed pariatur enim quibusdam
+			asperiores tempora earum quis aliquid repudiandae dolores quaerat
+			voluptate fugiat harum doloremque.
+		</p>
+		<p>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
+			tempore voluptatum quisquam saepe sed pariatur enim quibusdam
+			asperiores tempora earum quis aliquid repudiandae dolores quaerat
+			voluptate fugiat harum doloremque.
+		</p>
+	</div>
 {/snippet}
 
 {#snippet content2()}
-	<p>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
-		tempore voluptatum quisquam saepe sed pariatur enim quibusdam asperiores
-		tempora earum quis aliquid repudiandae dolores quaerat voluptate fugiat
-		harum doloremque.
-	</p>
-	<p>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
-		tempore voluptatum quisquam saepe sed pariatur enim quibusdam asperiores
-		tempora earum quis aliquid repudiandae dolores quaerat voluptate fugiat
-		harum doloremque.
-	</p>
+	<div class="project-desc">
+		<p>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
+			tempore voluptatum quisquam saepe sed pariatur enim quibusdam
+			asperiores tempora earum quis aliquid repudiandae dolores quaerat
+			voluptate fugiat harum doloremque.
+		</p>
+		<p>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
+			tempore voluptatum quisquam saepe sed pariatur enim quibusdam
+			asperiores tempora earum quis aliquid repudiandae dolores quaerat
+			voluptate fugiat harum doloremque.
+		</p>
+	</div>
 {/snippet}
 
 <div class="projects">
@@ -48,9 +52,9 @@
 		<i> Advancing closer to the future of intelligent systems.</i>
 	</div> -->
 
-	<div class="project-list">
-		<Tabs tabs={projects} {content1} {content2} />
-	</div>
+	<!-- <div class="project-list"> -->
+	<Tabs tabs={projects} {content1} {content2} />
+	<!-- </div> -->
 </div>
 
 <style lang="scss">
@@ -67,15 +71,20 @@
 		padding: global.$margin-1 * 2 global.$margin-1 0
 			calc(global.$margin-1 * 7 / 3);
 
-		.desc {
-			font-size: 20px;
-			padding: 0 0 global.$margin-1 0;
-		}
+		// .desc {
+		// 	font-size: 20px;
+		// 	padding: 0 0 global.$margin-1 0;
+		// }
 
-		.project-list {
-			display: flex;
-			flex-direction: column;
-			flex: 1 1 auto;
+		// .project-list {
+		// 	display: flex;
+		// 	flex-direction: column;
+		// 	flex: 1 1 auto;
+		// }
+
+		.project-desc {
+			width: 86%;
+			height: 100%;
 		}
 	}
 </style>

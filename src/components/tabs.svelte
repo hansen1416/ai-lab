@@ -84,7 +84,7 @@
 		margin-top: calc(global.$margin-1 / 2);
 		padding: calc(global.$margin-1 / 2) 0 0 0;
 		flex: 1 1 auto;
-		width: 82%;
+		width: 100%;
 		font-size: 24px;
 
 		@include global.galssblur(2px);
