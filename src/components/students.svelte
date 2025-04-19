@@ -73,6 +73,7 @@
 {#snippet student(data: STUDENT)}
 	<div class="member">
 		<div class="content">
+			<div class="line"></div>
 			<div class="u">
 				<img src={data.image} alt={data.name} />
 				<span class="name">{data.name}</span>
@@ -164,6 +165,17 @@
 				width: 560px;
 
 				position: relative;
+
+				.line {
+					width: 100%;
+					height: 1px;
+					margin-bottom: global.$margin-1 / 2;
+					background: linear-gradient(
+						to left,
+						rgba(112, 88, 213, 0.15) 15%,
+						rgb(112, 88, 213) 100%
+					);
+				}
 
 				.u {
 					width: 100%;
