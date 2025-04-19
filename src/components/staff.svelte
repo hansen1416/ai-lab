@@ -124,8 +124,8 @@
 		width: 100%;
 		height: 100%;
 		box-sizing: border-box;
-		padding: global.$margin-1 * 2 global.$margin-1 global.$margin-1 * 2
-			calc(global.$margin-1 * 7 / 3);
+		padding: calc(global.$margin-1 * 2) global.$margin-1
+			calc(global.$margin-1 * 2) calc(global.$margin-1 * 7 / 3);
 
 		.detail {
 			position: relative;
@@ -152,13 +152,13 @@
 					justify-content: center;
 					h3 {
 						font-size: 32px;
-						margin-bottom: global.$margin-1 / 2;
+						margin-bottom: calc(global.$margin-1 / 2);
 						@include global.operation-font;
 					}
 
 					p {
 						font-size: 24px;
-						margin-bottom: global.$margin-1 / 2;
+						margin-bottom: calc(global.$margin-1 / 2);
 						@include global.operation-font;
 					}
 
@@ -169,7 +169,7 @@
 						justify-content: flex-start;
 
 						a {
-							margin-right: global.$margin-1 / 2;
+							margin-right: calc(global.$margin-1 / 2);
 
 							i {
 								color: global.$font-white;
@@ -197,7 +197,7 @@
 			overflow: hidden;
 
 			.member {
-				margin-right: global.$margin-1/ 2;
+				margin-right: calc(global.$margin-1/ 2);
 				width: 460px;
 				position: relative;
 
@@ -206,7 +206,8 @@
 				button {
 					@include global.button-bottom;
 
-					padding: global.$margin-1 / 4 global.$margin-1 / 2;
+					padding: calc(global.$margin-1 / 4)
+						calc(global.$margin-1 / 2);
 					box-sizing: border-box;
 					display: flex;
 					flex-direction: row;
@@ -219,7 +220,7 @@
 					height: calc($h - global.$margin-1 / 2);
 					border-radius: 50%;
 					text-align: center;
-					margin-right: global.$margin-1/ 2;
+					margin-right: calc(global.$margin-1/ 2);
 				}
 
 				.name {

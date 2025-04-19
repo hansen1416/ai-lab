@@ -123,8 +123,8 @@
 		width: 100%;
 		height: 100%;
 		box-sizing: border-box;
-		padding: global.$margin-1 * 2 global.$margin-1 * 7/2 global.$margin-1 *
-			2 calc(global.$margin-1 * 10 / 3);
+		padding: calc(global.$margin-1 * 2) calc(global.$margin-1 * 7 / 2)
+			calc(global.$margin-1 * 2) calc(global.$margin-1 * 10 / 3);
 
 		.decor {
 			position: absolute;
@@ -138,10 +138,10 @@
 			background-position: center;
 
 			&.l {
-				left: global.$margin-1 * 2;
+				left: calc(global.$margin-1 * 2);
 			}
 			&.r {
-				right: global.$margin-1 * 2;
+				right: calc(global.$margin-1 * 2);
 				transform: rotate(180deg);
 			}
 		}
@@ -170,7 +170,7 @@
 				.line {
 					width: 100%;
 					height: 1px;
-					margin-bottom: global.$margin-1 / 2;
+					margin-bottom: calc(global.$margin-1 / 2);
 					background: linear-gradient(
 						to left,
 						rgba(112, 88, 213, 0.15) 15%,
@@ -185,8 +185,8 @@
 					flex-direction: row;
 					align-items: center;
 					justify-content: flex-start;
-					margin-bottom: global.$margin-1/2;
-					padding: global.$margin-1 / 2;
+					margin-bottom: calc(global.$margin-1/2);
+					padding: calc(global.$margin-1 / 2);
 					box-sizing: border-box;
 					border-left: 4px solid global.$font-white;
 
@@ -203,12 +203,12 @@
 						width: 50px;
 						height: 50px;
 						border-radius: 50%;
-						margin-right: global.$margin-1/2;
+						margin-right: calc(global.$margin-1/2);
 					}
 
 					.name {
 						font-size: 24px;
-						margin-right: global.$margin-1 / 2;
+						margin-right: calc(global.$margin-1 / 2);
 
 						@include global.operation-font;
 					}

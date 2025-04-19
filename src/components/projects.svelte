@@ -105,7 +105,7 @@
 		width: 100%;
 		height: 100%;
 		box-sizing: border-box;
-		padding: global.$margin-1 * 2 global.$margin-1 0
+		padding: calc(global.$margin-1 * 2) global.$margin-1 0
 			calc(global.$margin-1 * 7 / 3);
 
 		.project-list {
@@ -115,12 +115,12 @@
 
 			.project-item {
 				box-sizing: border-box;
-				margin-bottom: global.$margin-1/2;
+				margin-bottom: calc(global.$margin-1/2);
 
 				@include global.galssblur(2px);
 
 				&.active {
-					padding: global.$margin-1 / 2;
+					padding: calc(global.$margin-1 / 2);
 					background: linear-gradient(
 						140deg,
 						rgba(255, 255, 255, 0.8),
@@ -148,7 +148,7 @@
 						height: 12px;
 						border-radius: 50%;
 						background-color: global.$font-white;
-						margin-right: global.$margin-1/2;
+						margin-right: calc(global.$margin-1/2);
 					}
 
 					h2 {
@@ -190,12 +190,12 @@
 				@include global.operation-font;
 
 				font-size: 32px;
-				margin-bottom: global.$margin-1 / 2;
+				margin-bottom: calc(global.$margin-1 / 2);
 			}
 
 			.detail {
 				@include global.galssblur(2px);
-				padding: global.$margin-1 / 2 0;
+				padding: calc(global.$margin-1 / 2) 0;
 			}
 		}
 	}
