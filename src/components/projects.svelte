@@ -63,7 +63,7 @@
 	<div class="project-detail">
 		<div class="title">{projects[0].title}</div>
 		<div class="detail">
-			{@render projects[0].content()}
+			{@render projects[active_project_index].content()}
 		</div>
 	</div>
 
@@ -75,8 +75,17 @@
 						active_project_index = i;
 					}}
 				>
-					<h2>{project.title}</h2>
-					<p>{project.desc}</p>
+					<div class="title">
+						<div
+							class="bullet"
+							class:hidden={active_project_index === i}
+						></div>
+						<h2>{project.title}</h2>
+					</div>
+
+					<p class:hidden={active_project_index !== i}>
+						{project.desc}
+					</p>
 				</button>
 			</div>
 		{/each}
@@ -98,14 +107,76 @@
 			calc(global.$margin-1 * 7 / 3);
 
 		.project-list {
-			width: 560px;
+			width: 480px;
+			margin-right: global.$margin-1;
+			flex-shrink: 0;
+
 			.project-item {
+				box-sizing: border-box;
+				margin-bottom: global.$margin-1/2;
+
+				@include global.galssblur(2px);
+
+				&.active {
+					padding: global.$margin-1 / 2;
+					background: linear-gradient(
+						140deg,
+						rgba(255, 255, 255, 0.8),
+						rgba(199, 172, 255, 0.8)
+					);
+					clip-path: polygon(
+						0 0,
+						100% 0,
+						100% 90%,
+						96% 100%,
+						0% 100%
+					);
+				}
+
+				&:not(.active) {
+				}
+
+				.title {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-content: flex-start;
+					.bullet {
+						width: 12px;
+						height: 12px;
+						border-radius: 50%;
+						background-color: global.$font-white;
+						margin-right: global.$margin-1/2;
+					}
+
+					h2 {
+						@include global.operation-font;
+
+						font-size: 22px;
+					}
+				}
+				p {
+					font-size: 16px;
+				}
 			}
 		}
 
 		.project-detail {
-			width: 86%;
+			flex: 1 1 auto;
 			height: 100%;
+			margin-right: 200px;
+			box-sizing: border-box;
+
+			.title {
+				@include global.operation-font;
+
+				font-size: 32px;
+				margin-bottom: global.$margin-1;
+			}
+
+			.detail {
+				@include global.galssblur(2px);
+			}
 		}
 	}
 </style>
