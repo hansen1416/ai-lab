@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { base } from "$app/paths";
+
 	const projects = [
 		{
 			title: "Multi-modal Control for Robotic Devices",
@@ -16,43 +18,39 @@
 </script>
 
 {#snippet content1()}
-	<div class="project-detail">
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
-			tempore voluptatum quisquam saepe sed pariatur enim quibusdam
-			asperiores tempora earum quis aliquid repudiandae dolores quaerat
-			voluptate fugiat harum doloremque.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
-			tempore voluptatum quisquam saepe sed pariatur enim quibusdam
-			asperiores tempora earum quis aliquid repudiandae dolores quaerat
-			voluptate fugiat harum doloremque.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
-			tempore voluptatum quisquam saepe sed pariatur enim quibusdam
-			asperiores tempora earum quis aliquid repudiandae dolores quaerat
-			voluptate fugiat harum doloremque.
-		</p>
-	</div>
+	<p>
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
+		tempore voluptatum quisquam saepe sed pariatur enim quibusdam asperiores
+		tempora earum quis aliquid repudiandae dolores quaerat voluptate fugiat
+		harum doloremque.
+	</p>
+	<p>
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
+		tempore voluptatum quisquam saepe sed pariatur enim quibusdam asperiores
+		tempora earum quis aliquid repudiandae dolores quaerat voluptate fugiat
+		harum doloremque.
+	</p>
+	<p>
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
+		tempore voluptatum quisquam saepe sed pariatur enim quibusdam asperiores
+		tempora earum quis aliquid repudiandae dolores quaerat voluptate fugiat
+		harum doloremque.
+	</p>
 {/snippet}
 
 {#snippet content2()}
-	<div class="project-detail">
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
-			tempore voluptatum quisquam saepe sed pariatur enim quibusdam
-			asperiores tempora earum quis aliquid repudiandae dolores quaerat
-			voluptate fugiat harum doloremque.
-		</p>
-		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
-			tempore voluptatum quisquam saepe sed pariatur enim quibusdam
-			asperiores tempora earum quis aliquid repudiandae dolores quaerat
-			voluptate fugiat harum doloremque.
-		</p>
-	</div>
+	<p>
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
+		tempore voluptatum quisquam saepe sed pariatur enim quibusdam asperiores
+		tempora earum quis aliquid repudiandae dolores quaerat voluptate fugiat
+		harum doloremque.
+	</p>
+	<p>
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eos
+		tempore voluptatum quisquam saepe sed pariatur enim quibusdam asperiores
+		tempora earum quis aliquid repudiandae dolores quaerat voluptate fugiat
+		harum doloremque.
+	</p>
 {/snippet}
 
 <div class="projects">
@@ -61,7 +59,11 @@
 	</div> -->
 
 	<div class="project-detail">
-		<div class="title">{projects[0].title}</div>
+		<div
+			class="decor"
+			style="background-image: url({base}/images/decor.svg);"
+		></div>
+		<div class="title">{projects[active_project_index].title}</div>
 		<div class="detail">
 			{@render projects[active_project_index].content()}
 		</div>
@@ -162,14 +164,27 @@
 		}
 
 		.project-detail {
+			position: relative;
 			flex: 1 1 auto;
 			height: 100%;
-			margin-right: 200px;
+			margin-right: 300px;
 			box-sizing: border-box;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: flex-start;
+
+			.decor {
+				position: absolute;
+				width: 35px;
+				height: 400px;
+				top: 50%;
+				margin-top: -200px;
+				left: -50px;
+				background-size: 100% 100%;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
 
 			.title {
 				@include global.operation-font;
