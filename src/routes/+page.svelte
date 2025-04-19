@@ -14,7 +14,7 @@
 	import Introduction from "../components/introduction.svelte";
 	import Projects from "../components/projects.svelte";
 	import Staff from "../components/staff.svelte";
-	import Student from "../components/student.svelte";
+	import Students from "../components/students.svelte";
 	import Joinus from "../components/joinus.svelte";
 	import "fullpage.js/dist/fullpage.css";
 
@@ -234,7 +234,7 @@
 	<div class="section"><Introduction {current_section_index} /></div>
 	<div class="section"><Projects /></div>
 	<div class="section"><Staff /></div>
-	<div class="section"><Student /></div>
+	<div class="section"><Students /></div>
 	<div class="section"><Joinus /></div>
 </div>
 

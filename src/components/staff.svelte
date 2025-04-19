@@ -70,10 +70,29 @@
 	</div>
 {/snippet}
 
-<div class="team"></div>
+<div class="staff"></div>
 
 <style lang="scss">
 	@use "../assets/global";
+
+	.staff {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: space-between;
+
+		.detail {
+			flex: 1 1 auto;
+		}
+
+		.staff-list {
+			width: 100%;
+			height: 50px;
+			display: flex;
+			flex-direction: row;
+		}
+	}
+
 	// .team {
 	// 	display: flex;
 	// 	flex-direction: column;
