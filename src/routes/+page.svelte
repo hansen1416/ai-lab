@@ -13,7 +13,8 @@
 	import Loader from "../components/loader.svelte";
 	import Introduction from "../components/introduction.svelte";
 	import Projects from "../components/projects.svelte";
-	import Team from "../components/team.svelte";
+	import Staff from "../components/staff.svelte";
+	import Student from "../components/student.svelte";
 	import Joinus from "../components/joinus.svelte";
 	import "fullpage.js/dist/fullpage.css";
 
@@ -87,7 +88,13 @@
 
 		new fullpage("#fullpage", {
 			// licenseKey: "YOUR_KEY_HERE",
-			anchors: ["introduction", "projects", "team", "joinus"],
+			anchors: [
+				"introduction",
+				"projects",
+				"staff",
+				"students",
+				"joinus",
+			],
 			autoScrolling: true,
 			scrollBar: false,
 			scrollOverflow: false,
@@ -151,6 +158,7 @@
 
 				animation_mapping.push(happy_clip);
 				animation_mapping.push(thankful_clip);
+				animation_mapping.push(clapping_clip);
 				animation_mapping.push(clapping_clip);
 				animation_mapping.push(greeting_clip);
 
@@ -225,7 +233,8 @@
 <div id="fullpage">
 	<div class="section"><Introduction {current_section_index} /></div>
 	<div class="section"><Projects /></div>
-	<div class="section"><Team /></div>
+	<div class="section"><Staff /></div>
+	<div class="section"><Student /></div>
 	<div class="section"><Joinus /></div>
 </div>
 
@@ -239,8 +248,9 @@
 			<span class:invisible={current_section_index !== 1}
 				>Research Projects</span
 			>
-			<span class:invisible={current_section_index !== 2}>Team</span>
-			<span class:invisible={current_section_index !== 3}
+			<span class:invisible={current_section_index !== 2}>Staff</span>
+			<span class:invisible={current_section_index !== 3}>Students</span>
+			<span class:invisible={current_section_index !== 4}
 				>Study or Work With Us</span
 			>
 		</div>
