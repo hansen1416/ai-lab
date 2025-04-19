@@ -1,7 +1,17 @@
 <script lang="ts">
 	import { base } from "$app/paths";
 
-	const STAFF = [
+	type Staff = {
+		name: string;
+		role: string;
+		image: string;
+		social: Array<{
+			url: string;
+			icon: string;
+		}>;
+	};
+
+	const STAFF_LIST: Staff[] = [
 		{
 			name: "Dr. Almas Baim",
 			role: "Lead Software Architect, Co-Founder",
@@ -44,39 +54,50 @@
 			],
 		},
 	];
+
+	let active_staff_index = $state(0);
 </script>
 
-{#snippet staff()}
-	<div class="members">
-		{#each STAFF as member}
-			<div class="member staff">
-				<img src={member.image} alt={member.name} />
-				<h3>{member.name}</h3>
-				<p>{member.role}</p>
-				<div class="social">
-					{#each member.social as link}
-						<a
-							href={link.url}
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label={link.icon}
-						>
-							<i class={link.icon}></i>
-						</a>
-					{/each}
-				</div>
+{#snippet staff(member: Staff)}
+	<div class="profile">
+		<img src={member.image} alt={member.name} />
+		<div class="r">
+			<h3>{member.name}</h3>
+			<p>{member.role}</p>
+			<div class="social">
+				{#each member.social as link}
+					<a
+						href={link.url}
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label={link.icon}
+					>
+						<i class={link.icon}></i>
+					</a>
+				{/each}
 			</div>
-		{/each}
+		</div>
+	</div>
+	<div class="desc">
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde recusandae
+		sed, suscipit eum officia magni a itaque nisi doloribus minus ut, optio
+		tenetur eos magnam excepturi expedita totam soluta asperiores?
 	</div>
 {/snippet}
 
 <div class="staff">
-	<div class="detail"></div>
+	<div class="detail">
+		{@render staff(STAFF_LIST[active_staff_index])}
+	</div>
 
 	<div class="staff-list">
-		{#each STAFF as member}
+		{#each STAFF_LIST as member, i}
 			<div class="member">
-				<button>
+				<button
+					onclick={() => {
+						active_staff_index = i;
+					}}
+				>
 					<img
 						src={member.image
 							? member.image
@@ -107,8 +128,62 @@
 			calc(global.$margin-1 * 7 / 3);
 
 		.detail {
-			width: 100%;
+			position: relative;
+			width: 58%;
 			flex: 1 1 auto;
+
+			.profile {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: flex-start;
+				margin-bottom: global.$margin-1;
+				img {
+					width: 200px;
+					height: 200px;
+					border: 4px solid global.$font-white;
+					margin-right: global.$margin-1;
+				}
+
+				.r {
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					justify-content: center;
+					h3 {
+						font-size: 32px;
+						margin-bottom: global.$margin-1 / 2;
+						@include global.operation-font;
+					}
+
+					p {
+						font-size: 24px;
+						margin-bottom: global.$margin-1 / 2;
+						@include global.operation-font;
+					}
+
+					.social {
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+						justify-content: flex-start;
+
+						a {
+							margin-right: global.$margin-1 / 2;
+
+							i {
+								color: global.$font-white;
+								font-size: 24px;
+							}
+						}
+					}
+				}
+			}
+
+			.desc {
+				font-size: 20px;
+				line-height: 1.5;
+			}
 		}
 
 		.staff-list {
@@ -123,7 +198,7 @@
 
 			.member {
 				margin-right: global.$margin-1/ 2;
-				width: 360px;
+				width: 460px;
 				position: relative;
 
 				@include global.button-top;

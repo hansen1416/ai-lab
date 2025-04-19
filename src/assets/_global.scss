@@ -52,7 +52,8 @@ $margin-1: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: $button-background;
+    // background-color: $button-background;
+    background-color: rgb(38, 34, 65);
 
     @include galssblur();
 
