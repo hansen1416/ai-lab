@@ -166,16 +166,21 @@
 			height: 100%;
 			margin-right: 200px;
 			box-sizing: border-box;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: flex-start;
 
 			.title {
 				@include global.operation-font;
 
 				font-size: 32px;
-				margin-bottom: global.$margin-1;
+				margin-bottom: global.$margin-1 / 2;
 			}
 
 			.detail {
 				@include global.galssblur(2px);
+				padding: global.$margin-1 / 2 0;
 			}
 		}
 	}
