@@ -26,5 +26,15 @@
 				margin-bottom: 0;
 			}
 		}
+
+		button {
+			border: none;
+			background: none;
+			outline: none;
+			cursor: pointer;
+			padding: 0;
+			margin: 0;
+			color: inherit;
+		}
 	}
 </style>

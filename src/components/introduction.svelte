@@ -21,7 +21,7 @@
 		</div>
 	</div>
 
-	<div class="scroll" class:hidden={current_section_index !== 0}>
+	<div class="scroll" class:invisible={current_section_index !== 0}>
 		<a href="#projects">Scroll to explore</a>
 		<div class="container">
 			<div class="chevron"></div>

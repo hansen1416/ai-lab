@@ -233,14 +233,14 @@
 	<div class="logo">
 		<img src="{base}/images/logo.png" alt="" width="32px" height="32px" />
 		<div>
-			<span class:hidden={current_section_index !== 0}>
+			<span class:invisible={current_section_index !== 0}>
 				Brighton AI Robotics (AIR) Force Projects</span
 			>
-			<span class:hidden={current_section_index !== 1}
+			<span class:invisible={current_section_index !== 1}
 				>Research Projects</span
 			>
-			<span class:hidden={current_section_index !== 2}>Team</span>
-			<span class:hidden={current_section_index !== 3}
+			<span class:invisible={current_section_index !== 2}>Team</span>
+			<span class:invisible={current_section_index !== 3}
 				>Study or Work With Us</span
 			>
 		</div>
