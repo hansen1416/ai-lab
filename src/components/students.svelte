@@ -1,54 +1,17 @@
 <script lang="ts">
 	import { base } from "$app/paths";
-	import Tabs from "./tabs.svelte";
 
-	const tabs = ["Staff", "Students"];
+	type STUDENT = {
+		name: string;
+		project: string;
+		image: string;
+		social: Array<{
+			url: string;
+			icon: string;
+		}>;
+	};
 
-	const STAFF = [
-		{
-			name: "Almas Baim",
-			role: "Lead Software Architect, Co-Founder",
-			image: `${base}/images/team/ab.png`,
-			social: [
-				{
-					url: "https://research.brighton.ac.uk/en/persons/almas-baimagambetov",
-					icon: "fas fa-user-circle",
-				},
-				{
-					url: "https://github.com/AlmasB/",
-					icon: "fab fa-github",
-				},
-				{
-					url: "https://www.youtube.com/@AlmasB0",
-					icon: "fab fa-youtube",
-				},
-			],
-		},
-		{
-			name: "Khizer Saeed",
-			role: "Engineering Lead, Co-Founder",
-			image: `${base}/images/placeholder.jpg`,
-			social: [
-				{
-					url: "https://research.brighton.ac.uk/en/persons/khizer-saeed",
-					icon: "fas fa-user-circle",
-				},
-			],
-		},
-		{
-			name: "Shanay Rab",
-			role: "Metrology, Machine Design, Automation, and Robotics.",
-			image: `${base}/images/team/sr.png`,
-			social: [
-				{
-					url: "https://research.brighton.ac.uk/en/persons/shanay-rab",
-					icon: "fas fa-user-circle",
-				},
-			],
-		},
-	];
-
-	const STUDENTS = [
+	const STUDENT_LIST: STUDENT[] = [
 		{
 			name: "Sajjad Hussain",
 			project: "Multi-modal Robotics Control",
@@ -56,7 +19,7 @@
 			social: [
 				{
 					url: "https://linkedin.com",
-					icon: "fab fa-linkedin-in",
+					icon: "fas fa-user-circle",
 				},
 			],
 		},
@@ -67,7 +30,7 @@
 			social: [
 				{
 					url: "https://linkedin.com",
-					icon: "fab fa-linkedin-in",
+					icon: "fas fa-user-circle",
 				},
 			],
 		},
@@ -78,7 +41,7 @@
 			social: [
 				{
 					url: "https://linkedin.com",
-					icon: "fab fa-linkedin-in",
+					icon: "fas fa-user-circle",
 				},
 			],
 		},
@@ -89,7 +52,7 @@
 			social: [
 				{
 					url: "https://linkedin.com",
-					icon: "fab fa-linkedin-in",
+					icon: "fas fa-user-circle",
 				},
 			],
 		},
@@ -100,22 +63,21 @@
 			social: [
 				{
 					url: "https://linkedin.com",
-					icon: "fab fa-linkedin-in",
+					icon: "fas fa-user-circle",
 				},
 			],
 		},
 	];
 </script>
 
-{#snippet staff()}
-	<div class="members">
-		{#each STAFF as member}
-			<div class="member staff">
-				<img src={member.image} alt={member.name} />
-				<h3>{member.name}</h3>
-				<p>{member.role}</p>
+{#snippet student(data: STUDENT)}
+	<div class="member">
+		<div class="content">
+			<div class="u">
+				<img src={data.image} alt={data.name} />
+				<span class="name">{data.name}</span>
 				<div class="social">
-					{#each member.social as link}
+					{#each data.social as link}
 						<a
 							href={link.url}
 							target="_blank"
@@ -127,116 +89,127 @@
 					{/each}
 				</div>
 			</div>
-		{/each}
-	</div>
-{/snippet}
-
-{#snippet students()}
-	<div class="members">
-		{#each STUDENTS as student}
-			<div class="member student">
-				<img src={student.image} alt={student.name} />
-				<h3>{student.name}</h3>
-				<p>{student.project}</p>
-				<div class="social">
-					{#each student.social as link}
-						<a
-							href={link.url}
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label={link.icon}
-						>
-							<i class={link.icon}></i>
-						</a>
-					{/each}
-				</div>
+			<div class="l">
+				<p>{data.project}</p>
 			</div>
-		{/each}
+		</div>
 	</div>
 {/snippet}
 
-<div class="team">
-	<Tabs {tabs} {staff} {students} />
+<div class="students">
+	{#each STUDENT_LIST as data}
+		{@render student(data)}
+	{/each}
+	<div
+		class="decor l"
+		style="background-image: url({base}/images/decor1.svg);"
+	></div>
+	<div
+		class="decor r"
+		style="background-image: url({base}/images/decor1.svg);"
+	></div>
 </div>
 
 <style lang="scss">
 	@use "../assets/global";
-	.team {
+	.students {
+		position: relative;
 		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
+		flex-direction: row;
+		align-items: center;
 		justify-content: space-between;
+		flex-wrap: wrap;
 		width: 100%;
 		height: 100%;
 		box-sizing: border-box;
-		padding: global.$margin-1 * 2 global.$margin-1 0
-			calc(global.$margin-1 * 7 / 3);
+		padding: global.$margin-1 * 2 global.$margin-1 * 7/2 global.$margin-1 *
+			2 calc(global.$margin-1 * 10 / 3);
 
-		.members {
-			width: 100%;
-			height: 100%;
+		.decor {
+			position: absolute;
+			width: 4px;
+			height: 540px;
+			top: 50%;
+			margin-top: -270px;
+
+			background-size: 100% 100%;
+			background-repeat: no-repeat;
+			background-position: center;
+
+			&.l {
+				left: global.$margin-1 * 2;
+			}
+			&.r {
+				right: global.$margin-1 * 2;
+				transform: rotate(180deg);
+			}
+		}
+
+		.member {
+			width: 49%;
+			height: 80px;
 			display: flex;
 			flex-direction: row;
-			flex-wrap: wrap;
-			justify-content: center;
-			align-items: flex-start;
-			padding-top: global.$margin-1;
+			align-items: center;
 
-			.member {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				box-sizing: border-box;
-				// background-color: rgba(240, 248, 255, 0.4);
-				// border-radius: 30px;
-				text-align: center;
+			&:nth-child(even) {
+				justify-content: flex-end;
+			}
 
-				$s: 6px;
-				// $border-color: rgba(183, 165, 220, 0.3);
-				$border-color: rgb(247, 245, 253);
-				// $border-shaodw-color: rgba(255, 255, 255, 0.5);
-				$border-shaodw-color: rgba(2, 1, 19, 0.5);
+			&:nth-child(odd) {
+				justify-content: flex-start;
+			}
 
-				border: 4px solid $border-color;
-				box-shadow:
-					0 0 $s $border-shaodw-color,
-					0 0 $s * 2 $border-shaodw-color,
-					0 0 $s $border-shaodw-color,
-					0 0 $s * 2 $border-shaodw-color;
-				// background-color: rgba(183, 165, 220, 0.3);
-				// background-color: rgba(247, 245, 253, 0.3);
-				background: linear-gradient(
-					135deg,
-					rgba(33, 15, 55, 1),
-					rgba(9, 13, 32, 1)
-				);
+			.content {
+				width: 560px;
 
-				@include global.galssblur(2px);
-				&:last-child {
-					margin-right: 0;
+				position: relative;
+
+				.u {
+					width: 100%;
+					height: 80px;
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-content: flex-start;
+					margin-bottom: global.$margin-1/2;
+					padding: global.$margin-1 / 2;
+					box-sizing: border-box;
+					border-left: 4px solid global.$font-white;
+
+					background-color: rgb(38, 34, 65);
+					clip-path: polygon(
+						0 0,
+						100% 0,
+						100% 70%,
+						96% 100%,
+						0% 100%
+					);
+
+					img {
+						width: 50px;
+						height: 50px;
+						border-radius: 50%;
+						margin-right: global.$margin-1/2;
+					}
+
+					.name {
+						font-size: 24px;
+						margin-right: global.$margin-1 / 2;
+
+						@include global.operation-font;
+					}
+
+					a {
+						i {
+							color: global.$font-white;
+							font-size: 24px;
+						}
+					}
 				}
 
-				&.staff {
-					$w: 375px;
-					width: $w;
-					height: calc($w * 5 / 4);
-					margin-right: global.$margin-1;
-					padding: calc(global.$margin-1 / 2);
-				}
-
-				&.student {
-					$w: 300px;
-					width: $w;
-					height: calc($w * 5 / 4);
-					// margin-right: global.$margin-1;
-					padding: calc(global.$margin-1 / 2);
-				}
-
-				img {
-					width: 180px;
-					height: 180px;
-					border-radius: 50%;
+				.l {
+					font-size: 20px;
 				}
 			}
 		}

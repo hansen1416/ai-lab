@@ -219,8 +219,6 @@
 	});
 </script>
 
-<!-- <a href="{base}/">Home5</a> -->
-
 <div
 	class="overall-bg"
 	style="background-image: url({base}/images/bg.png);"
