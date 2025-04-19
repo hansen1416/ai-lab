@@ -163,8 +163,9 @@
 
 			.content {
 				width: 560px;
-
 				position: relative;
+
+				@include global.galssblur();
 
 				.line {
 					width: 100%;

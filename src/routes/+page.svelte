@@ -139,6 +139,7 @@
 			loadJSON(`${base}/happy.json`),
 			loadJSON(`${base}/thankful.json`),
 			loadJSON(`${base}/clapping.json`),
+			loadJSON(`${base}/house-dancing.json`),
 			loadJSON(`${base}/greeting.json`),
 			new Promise((resolve) =>
 				setTimeout(
@@ -147,31 +148,34 @@
 				),
 			) /** minimum loading time */,
 		])
-			.then(([eva, idle, happy, thankful, clapping, greeting]) => {
-				threeScene.scene.add(eva);
+			.then(
+				([eva, idle, happy, thankful, clapping, dancing, greeting]) => {
+					threeScene.scene.add(eva);
 
-				const idle_clip = THREE.AnimationClip.parse(idle);
-				const happy_clip = THREE.AnimationClip.parse(happy);
-				const thankful_clip = THREE.AnimationClip.parse(thankful);
-				const clapping_clip = THREE.AnimationClip.parse(clapping);
-				const greeting_clip = THREE.AnimationClip.parse(greeting);
+					const idle_clip = THREE.AnimationClip.parse(idle);
+					const happy_clip = THREE.AnimationClip.parse(happy);
+					const thankful_clip = THREE.AnimationClip.parse(thankful);
+					const clapping_clip = THREE.AnimationClip.parse(clapping);
+					const dancing_clip = THREE.AnimationClip.parse(dancing);
+					const greeting_clip = THREE.AnimationClip.parse(greeting);
 
-				animation_mapping.push(happy_clip);
-				animation_mapping.push(thankful_clip);
-				animation_mapping.push(clapping_clip);
-				animation_mapping.push(clapping_clip);
-				animation_mapping.push(greeting_clip);
+					animation_mapping.push(happy_clip);
+					animation_mapping.push(thankful_clip);
+					animation_mapping.push(clapping_clip);
+					animation_mapping.push(dancing_clip);
+					animation_mapping.push(greeting_clip);
 
-				mixer = new THREE.AnimationMixer(eva);
+					mixer = new THREE.AnimationMixer(eva);
 
-				mixer.addEventListener("finished", onAnimationFinished);
+					mixer.addEventListener("finished", onAnimationFinished);
 
-				idle_action = mixer.clipAction(idle_clip);
+					idle_action = mixer.clipAction(idle_clip);
 
-				play_action(idle_action);
+					play_action(idle_action);
 
-				loading = false;
-			})
+					loading = false;
+				},
+			)
 			.finally(() => {
 				// remove loading screen
 				// loading = false;
