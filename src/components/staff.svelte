@@ -3,7 +3,7 @@
 
 	const STAFF = [
 		{
-			name: "Almas Baim",
+			name: "Dr. Almas Baim",
 			role: "Lead Software Architect, Co-Founder",
 			image: `${base}/images/team/ab.png`,
 			social: [
@@ -22,7 +22,7 @@
 			],
 		},
 		{
-			name: "Khizer Saeed",
+			name: "Dr. Khizer Saeed",
 			role: "Engineering Lead, Co-Founder",
 			image: `${base}/images/placeholder.jpg`,
 			social: [
@@ -33,7 +33,7 @@
 			],
 		},
 		{
-			name: "Shanay Rab",
+			name: "Dr. Shanay Rab",
 			role: "Metrology, Machine Design, Automation, and Robotics.",
 			image: `${base}/images/team/sr.png`,
 			social: [
@@ -70,7 +70,27 @@
 	</div>
 {/snippet}
 
-<div class="staff"></div>
+<div class="staff">
+	<div class="detail"></div>
+
+	<div class="staff-list">
+		{#each STAFF as member}
+			<div class="member">
+				<button>
+					<img
+						src={member.image
+							? member.image
+							: `${base}/images/placeholder.jpg`}
+						alt={member.name}
+					/>
+					<span class="name">
+						{member.name}
+					</span>
+				</button>
+			</div>
+		{/each}
+	</div>
+</div>
 
 <style lang="scss">
 	@use "../assets/global";
@@ -80,16 +100,59 @@
 		flex-direction: column;
 		align-items: flex-start;
 		justify-content: space-between;
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
+		padding: global.$margin-1 * 2 global.$margin-1 global.$margin-1 * 2
+			calc(global.$margin-1 * 7 / 3);
 
 		.detail {
+			width: 100%;
 			flex: 1 1 auto;
 		}
 
 		.staff-list {
+			$h: 86px;
+
 			width: 100%;
-			height: 50px;
+			height: $h;
+			flex-grow: 0;
 			display: flex;
 			flex-direction: row;
+			overflow: hidden;
+
+			.member {
+				margin-right: global.$margin-1/ 2;
+				width: 360px;
+				position: relative;
+
+				@include global.button-top;
+
+				button {
+					@include global.button-bottom;
+
+					padding: global.$margin-1 / 4 global.$margin-1 / 2;
+					box-sizing: border-box;
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-content: flex-start;
+				}
+
+				img {
+					width: calc($h - global.$margin-1 / 2);
+					height: calc($h - global.$margin-1 / 2);
+					border-radius: 50%;
+					text-align: center;
+					margin-right: global.$margin-1/ 2;
+				}
+
+				.name {
+					font-size: 24px;
+
+					@include global.operation-font;
+				}
+			}
 		}
 	}
 

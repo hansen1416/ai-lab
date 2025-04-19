@@ -1,8 +1,8 @@
 $font-white: #fafaf9;
-$button-border: #fff;
-$corner-border-width: 2px;
-$corner-border-size-top: 12px;
-$corner-border-size-side: 1px;
+$button-border-color: #fafaf9;
+$corner-border-width: 4px;
+$corner-border-size-top: 16px;
+$corner-border-size-side: 2px;
 $text-border-size: 40px;
 $text-border-width: 1px;
 $text-border-color: #fff;
@@ -24,20 +24,20 @@ $margin-1: 40px;
         position: absolute;
         width: $corner-border-width;
         height: 0;
-        border-top: $corner-border-size-top solid $button-border;
+        border-top: $corner-border-size-top solid $button-border-color;
         top: 0;
         border-bottom: 0;
     }
 
     &::before {
         left: 0;
-        border-left: $corner-border-size-side solid $button-border;
+        border-left: $corner-border-size-side solid $button-border-color;
         z-index: 9;
     }
 
     &::after {
         right: 0;
-        border-right: $corner-border-size-side solid $button-border;
+        border-right: $corner-border-size-side solid $button-border-color;
     }
 }
 
@@ -52,7 +52,6 @@ $margin-1: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 $margin-1;
     background-color: $button-background;
 
     @include galssblur();
@@ -68,19 +67,19 @@ $margin-1: 40px;
         position: absolute;
         width: $corner-border-width;
         height: calc(100% - $corner-border-size-top);
-        border-bottom: $corner-border-size-top solid $button-border;
+        border-bottom: $corner-border-size-top solid $button-border-color;
         bottom: 0;
         border-top: 0;
     }
 
     &::before {
         left: 0;
-        border-left: $corner-border-size-side solid $button-border;
+        border-left: $corner-border-size-side solid $button-border-color;
     }
 
     &::after {
         right: 0;
-        border-right: $corner-border-size-side solid $button-border;
+        border-right: $corner-border-size-side solid $button-border-color;
     }
 }
 
@@ -97,7 +96,7 @@ $margin-1: 40px;
     -webkit-backdrop-filter: blur($blur);
     // border-radius: 10px;
     // border: 2px solid rgba(255, 255, 255, 0.18);
-    border: 2px solid $button-border;
+    border: 2px solid $button-border-color;
     border-top: 0;
     border-bottom: 0;
 }
