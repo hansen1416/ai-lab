@@ -19,59 +19,57 @@
 		overflow: hidden;
 	}
 
-	$size: 80px;
-
-	/* HTML: <div class="loader"></div> */
 	.loader {
-		width: $size;
-		height: calc($size / 2);
-		background: #3967ec;
 		position: relative;
-		animation: l9-0 1.5s infinite linear;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		max-width: 6rem;
+		margin-top: 3rem;
+		margin-bottom: 3rem;
 	}
 	.loader:before,
 	.loader:after {
 		content: "";
 		position: absolute;
-		background: inherit;
-		bottom: 100%;
-		width: 50%;
-		height: 100%;
-		animation: inherit;
-		animation-name: l9-1;
+		border-radius: 50%;
+		animation: pulsOut 1.8s ease-in-out infinite;
+		filter: drop-shadow(0 0 1rem rgba(255, 255, 255, 0.75));
 	}
 	.loader:before {
-		left: 0;
-		transform-origin: bottom left;
-		--s: -1;
+		width: 100%;
+		padding-bottom: 100%;
+		box-shadow: inset 0 0 0 1rem #fff;
+		animation-name: pulsIn;
 	}
 	.loader:after {
-		right: 0;
-		transform-origin: bottom right;
+		width: calc(100% - 2rem);
+		padding-bottom: calc(100% - 2rem);
+		box-shadow: 0 0 0 0 #fff;
 	}
-	@keyframes l9-0 {
-		0%,
-		10% {
-			transform: translateY(0%) scaleY(1);
+
+	@keyframes pulsIn {
+		0% {
+			box-shadow: inset 0 0 0 1rem #fff;
+			opacity: 1;
 		}
-		49.99% {
-			transform: translateY(-50%) scaleY(1);
-		}
-		50% {
-			transform: translateY(-50%) scaleY(-1);
-		}
-		90%,
+		50%,
 		100% {
-			transform: translateY(-100%) scaleY(-1);
+			box-shadow: inset 0 0 0 0 #fff;
+			opacity: 0;
 		}
 	}
-	@keyframes l9-1 {
-		10%,
-		90% {
-			transform: rotate(0deg);
-		}
+
+	@keyframes pulsOut {
+		0%,
 		50% {
-			transform: rotate(calc(var(--s, 1) * 180deg));
+			box-shadow: 0 0 0 0 #fff;
+			opacity: 0;
+		}
+		100% {
+			box-shadow: 0 0 0 1rem #fff;
+			opacity: 1;
 		}
 	}
 </style>

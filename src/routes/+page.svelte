@@ -144,7 +144,7 @@
 			new Promise((resolve) =>
 				setTimeout(
 					resolve,
-					process.env.NODE_ENV === "production" ? 1500 : 100,
+					process.env.NODE_ENV === "production" ? 1500 : 1000,
 				),
 			) /** minimum loading time */,
 		])
