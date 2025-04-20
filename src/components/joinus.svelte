@@ -6,14 +6,14 @@
 	<div class="upper">
 		<div class="study">
 			<div>
-				<span>Study for your PhD</span>
+				<h3>Study for your PhD</h3>
 				<p>
 					We welcome any applications related to Robotics and/or AI.
 					You can find out more at UoB Computing PhD.
 				</p>
 			</div>
 			<div>
-				<span>Work with our team</span>
+				<h3>Work with our team</h3>
 				<p>
 					We are always looking to create new networks and support
 					academic and industrial collaborations.
@@ -63,9 +63,29 @@
 			flex-grow: 1;
 			.study {
 				flex: 1 1 auto;
+				height: 100%;
 				margin-right: global.$robot-margin;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				justify-content: center;
 
 				@include global.glassblur(2px);
+
+				& > div {
+					margin-bottom: global.$margin-1;
+
+					h3 {
+						font-size: 24px;
+
+						@include global.operation-font;
+					}
+
+					p {
+						font-size: 18px;
+						line-height: 1.5;
+					}
+				}
 			}
 			.contact {
 				width: 400px;
