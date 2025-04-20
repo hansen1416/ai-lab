@@ -117,7 +117,7 @@
 				box-sizing: border-box;
 				margin-bottom: calc(global.$margin-1/2);
 
-				@include global.galssblur(2px);
+				@include global.glassblur(2px);
 
 				&.active {
 					padding: calc(global.$margin-1 / 2);
@@ -167,7 +167,7 @@
 			position: relative;
 			flex: 1 1 auto;
 			height: 100%;
-			margin-right: 300px;
+			margin-right: global.$robot-margin;
 			box-sizing: border-box;
 			display: flex;
 			flex-direction: column;
@@ -194,7 +194,7 @@
 			}
 
 			.detail {
-				@include global.galssblur(2px);
+				@include global.glassblur(2px);
 				padding: calc(global.$margin-1 / 2) 0;
 			}
 		}

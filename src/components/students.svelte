@@ -165,7 +165,7 @@
 				width: 560px;
 				position: relative;
 
-				@include global.galssblur();
+				@include global.glassblur();
 
 				.line {
 					width: 100%;

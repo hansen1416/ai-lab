@@ -283,7 +283,7 @@
 	// 				rgba(9, 13, 32, 1)
 	// 			);
 
-	// 			@include global.galssblur(2px);
+	// 			@include global.glassblur(2px);
 	// 			&:last-child {
 	// 				margin-right: 0;
 	// 			}
