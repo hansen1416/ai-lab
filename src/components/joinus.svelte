@@ -4,16 +4,26 @@
 
 <div class="joinus">
 	<div class="upper">
+		<div
+			class="decor"
+			style="background-image: url({base}/images/decor.svg);"
+		></div>
 		<div class="study">
 			<div>
-				<h3>Study for your PhD</h3>
+				<div>
+					<i class="fas fa-graduation-cap fa-stack-1x fa-inverse"></i>
+					<h3>Study for your PhD</h3>
+				</div>
 				<p>
 					We welcome any applications related to Robotics and/or AI.
 					You can find out more at UoB Computing PhD.
 				</p>
 			</div>
 			<div>
-				<h3>Work with our team</h3>
+				<div>
+					<i class="fas fa-user-plus fa-stack-1x fa-inverse"></i>
+					<h3>Work with our team</h3>
+				</div>
 				<p>
 					We are always looking to create new networks and support
 					academic and industrial collaborations.
@@ -22,11 +32,16 @@
 		</div>
 
 		<div class="contact">
-			<span>Contact Us</span>
+			<h3>Contact Us</h3>
+			<p>University of Brighton</p>
+			<p>Advanced Engineering Building Brighton</p>
+			<p>United Kingdom BN2 4AT</p>
 			<p>
-				University of Brighton Advanced Engineering Building Brighton
-				United Kingdom BN2 4AT Please contact Almas
-				[https://research.brighton.ac.uk/en/persons/almas-baimagambetov]
+				Please contact <a
+					href="https://research.brighton.ac.uk/en/persons/almas-baimagambetov"
+					target="_blank"
+					rel="noopener noreferrer">Almas</a
+				>
 				for any queries related to the Robotics AI Lab.
 			</p>
 		</div>
@@ -55,12 +70,26 @@
 			calc(global.$margin-1) calc(global.$margin-1 * 7 / 3);
 
 		.upper {
+			position: relative;
 			display: flex;
 			flex-direction: row;
 			align-items: flex-start;
 			justify-content: space-between;
 			width: 100%;
 			flex-grow: 1;
+
+			.decor {
+				position: absolute;
+				width: 35px;
+				height: 400px;
+				top: 50%;
+				margin-top: -200px;
+				left: -50px;
+				background-size: 100% 100%;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+
 			.study {
 				flex: 1 1 auto;
 				height: 100%;
@@ -90,6 +119,22 @@
 			.contact {
 				width: 400px;
 				flex-grow: 0;
+
+				h3 {
+					font-size: 24px;
+
+					@include global.operation-font;
+				}
+
+				p {
+					font-size: 18px;
+					line-height: 1;
+				}
+
+				a {
+					@include global.link;
+					text-decoration: underline;
+				}
 			}
 		}
 		.footer {
