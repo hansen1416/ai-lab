@@ -39,5 +39,10 @@
 			color: inherit;
 			text-align: inherit;
 		}
+
+		h3 {
+			margin: 0;
+			margin-bottom: 1em;
+		}
 	}
 </style>

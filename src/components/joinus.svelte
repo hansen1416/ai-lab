@@ -10,8 +10,11 @@
 		></div>
 		<div class="study">
 			<div>
-				<div>
-					<i class="fas fa-graduation-cap fa-stack-1x fa-inverse"></i>
+				<div class="t-bar">
+					<div class="icon">
+						<i class="fas fa-graduation-cap fa-stack-1x fa-inverse"
+						></i>
+					</div>
 					<h3>Study for your PhD</h3>
 				</div>
 				<p>
@@ -20,8 +23,10 @@
 				</p>
 			</div>
 			<div>
-				<div>
-					<i class="fas fa-user-plus fa-stack-1x fa-inverse"></i>
+				<div class="t-bar">
+					<div class="icon">
+						<i class="fas fa-user-plus fa-stack-1x fa-inverse"></i>
+					</div>
 					<h3>Work with our team</h3>
 				</div>
 				<p>
@@ -104,8 +109,30 @@
 				& > div {
 					margin-bottom: global.$margin-1;
 
+					.t-bar {
+						width: 100%;
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+						justify-content: flex-start;
+						margin-bottom: calc(global.$margin-1/2);
+
+						.icon {
+							width: 30px;
+							height: 30px;
+							margin-right: calc(global.$margin-1/2);
+
+							i {
+								width: 30px;
+								height: 30px;
+								font-size: 28px;
+							}
+						}
+					}
+
 					h3 {
 						font-size: 24px;
+						margin-bottom: 0;
 
 						@include global.operation-font;
 					}
