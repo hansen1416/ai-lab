@@ -259,10 +259,21 @@
 	</div>
 
 	<div class="navs">
-		<div class="nav"><a href="#introduction">Intro</a></div>
-		<div class="nav"><a href="#projects">Projects</a></div>
-		<div class="nav"><a href="#team">Team</a></div>
-		<div class="nav"><a href="#joinus">Join Us</a></div>
+		<div class="nav" class:active={current_section_index === 0}>
+			<a href="#introduction">Intro</a>
+		</div>
+		<div class="nav" class:active={current_section_index === 1}>
+			<a href="#projects">Projects</a>
+		</div>
+		<div class="nav" class:active={current_section_index === 2}>
+			<a href="#staff">Staff</a>
+		</div>
+		<div class="nav" class:active={current_section_index === 3}>
+			<a href="#students">Students</a>
+		</div>
+		<div class="nav" class:active={current_section_index === 4}>
+			<a href="#joinus">Join Us</a>
+		</div>
 	</div>
 </div>
 
@@ -404,12 +415,17 @@
 				font-size: 24px;
 				font-weight: bold;
 				margin-right: global.$margin-1;
-				letter-spacing: 4px;
+				letter-spacing: 2px;
 				width: 130px;
 				height: global.$top-bar-height;
+				box-sizing: border-box;
 
 				@include global.flex-center;
 				@include global.operation-font;
+
+				&.active {
+					border-bottom: 4px solid global.$font-white;
+				}
 
 				a {
 					color: inherit;

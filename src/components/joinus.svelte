@@ -146,6 +146,7 @@
 			.contact {
 				width: 400px;
 				flex-grow: 0;
+				padding-top: global.$margin-1;
 
 				h3 {
 					font-size: 24px;
