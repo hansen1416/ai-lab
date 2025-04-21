@@ -198,13 +198,13 @@
 
 			.member {
 				margin-right: calc(global.$margin-1/ 2);
-				width: 460px;
+				width: 560px;
 				position: relative;
 
-				@include global.button-top;
+				// @include global.button-top;
 
 				button {
-					@include global.button-bottom;
+					// @include global.button-bottom;
 
 					padding: calc(global.$margin-1 / 4)
 						calc(global.$margin-1 / 2);
@@ -213,6 +213,19 @@
 					flex-direction: row;
 					align-items: center;
 					justify-content: flex-start;
+					width: 100%;
+					height: 100%;
+
+					border-left: 4px solid global.$font-white;
+
+					background-color: rgb(38, 34, 65);
+					clip-path: polygon(
+						0 0,
+						100% 0,
+						100% 70%,
+						96% 100%,
+						0% 100%
+					);
 				}
 
 				img {
@@ -232,84 +245,5 @@
 		}
 	}
 
-	// .team {
-	// 	display: flex;
-	// 	flex-direction: column;
-	// 	align-items: flex-start;
-	// 	justify-content: space-between;
-	// 	width: 100%;
-	// 	height: 100%;
-	// 	box-sizing: border-box;
-	// 	padding: global.$margin-1 * 2 global.$margin-1 0
-	// 		calc(global.$margin-1 * 7 / 3);
-
-	// 	.members {
-	// 		width: 100%;
-	// 		height: 100%;
-	// 		display: flex;
-	// 		flex-direction: row;
-	// 		flex-wrap: wrap;
-	// 		justify-content: center;
-	// 		align-items: flex-start;
-	// 		padding-top: global.$margin-1;
-
-	// 		.member {
-	// 			display: flex;
-	// 			flex-direction: column;
-	// 			align-items: center;
-	// 			justify-content: center;
-	// 			box-sizing: border-box;
-	// 			// background-color: rgba(240, 248, 255, 0.4);
-	// 			// border-radius: 30px;
-	// 			text-align: center;
-
-	// 			$s: 6px;
-	// 			// $border-color: rgba(183, 165, 220, 0.3);
-	// 			$border-color: rgb(247, 245, 253);
-	// 			// $border-shaodw-color: rgba(255, 255, 255, 0.5);
-	// 			$border-shaodw-color: rgba(2, 1, 19, 0.5);
-
-	// 			border: 4px solid $border-color;
-	// 			box-shadow:
-	// 				0 0 $s $border-shaodw-color,
-	// 				0 0 $s * 2 $border-shaodw-color,
-	// 				0 0 $s $border-shaodw-color,
-	// 				0 0 $s * 2 $border-shaodw-color;
-	// 			// background-color: rgba(183, 165, 220, 0.3);
-	// 			// background-color: rgba(247, 245, 253, 0.3);
-	// 			background: linear-gradient(
-	// 				135deg,
-	// 				rgba(33, 15, 55, 1),
-	// 				rgba(9, 13, 32, 1)
-	// 			);
-
-	// 			@include global.glassblur(2px);
-	// 			&:last-child {
-	// 				margin-right: 0;
-	// 			}
-
-	// 			&.staff {
-	// 				$w: 375px;
-	// 				width: $w;
-	// 				height: calc($w * 5 / 4);
-	// 				margin-right: global.$margin-1;
-	// 				padding: calc(global.$margin-1 / 2);
-	// 			}
-
-	// 			&.student {
-	// 				$w: 300px;
-	// 				width: $w;
-	// 				height: calc($w * 5 / 4);
-	// 				// margin-right: global.$margin-1;
-	// 				padding: calc(global.$margin-1 / 2);
-	// 			}
-
-	// 			img {
-	// 				width: 180px;
-	// 				height: 180px;
-	// 				border-radius: 50%;
-	// 			}
-	// 		}
-	// 	}
-	// }
+	
 </style>
