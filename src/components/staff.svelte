@@ -13,7 +13,7 @@
 
 	const STAFF_LIST: Staff[] = [
 		{
-			name: "Dr. Almas Baim",
+			name: "Dr Almas Baim",
 			role: "Lead Software Architect, Co-Founder",
 			image: `${base}/images/team/ab.png`,
 			social: [
@@ -32,7 +32,7 @@
 			],
 		},
 		{
-			name: "Dr. Khizer Saeed",
+			name: "Dr Khizer Saeed",
 			role: "Engineering Lead, Co-Founder",
 			image: `${base}/images/placeholder.jpg`,
 			social: [
@@ -43,7 +43,7 @@
 			],
 		},
 		{
-			name: "Dr. Shanay Rab",
+			name: "Dr Shanay Rab",
 			role: "Metrology, Machine Design, Automation, and Robotics.",
 			image: `${base}/images/team/sr.png`,
 			social: [

@@ -154,11 +154,11 @@
 					h2 {
 						@include global.operation-font;
 
-						font-size: 22px;
+						font-size: 24px;
 					}
 				}
 				p {
-					font-size: 16px;
+					font-size: 18px;
 				}
 			}
 		}
@@ -196,6 +196,8 @@
 			.detail {
 				@include global.glassblur(2px);
 				padding: calc(global.$margin-1 / 2) 0;
+
+				font-size: 18px;
 			}
 		}
 	}
