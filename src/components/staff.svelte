@@ -43,6 +43,17 @@
 			],
 		},
 		{
+			name: "Dr Nikolaos Polatidis",
+			role: "",
+			image: `${base}/images/placeholder.jpg`,
+			social: [
+				{
+					url: "https://research.brighton.ac.uk/en/persons/khizer-saeed",
+					icon: "fas fa-user-circle",
+				},
+			],
+		},
+		{
 			name: "Dr Shanay Rab",
 			role: "Metrology, Machine Design, Automation, and Robotics.",
 			image: `${base}/images/team/sr.png`,
@@ -244,6 +255,4 @@
 			}
 		}
 	}
-
-	
 </style>
